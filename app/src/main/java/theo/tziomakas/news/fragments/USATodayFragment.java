@@ -88,6 +88,7 @@ public class USATodayFragment extends Fragment implements LoaderManager.LoaderCa
             adapter = new NewsAdapter(getActivity(), newsArrayList);
             mRecyclerView.setAdapter(adapter);
 
+            UpdateNewsWidgetService.startBakingService(getContext(), (ArrayList<News>) newsArrayList);
 
 
         }
