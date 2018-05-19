@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "945813550048",
+    "firebase_url": "https://capstone-155d4.firebaseio.com",
+    "project_id": "capstone-155d4",
+    "storage_bucket": "capstone-155d4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:945813550048:android:744cd1c8e09dd973",
+        "android_client_info": {
+          "package_name": "theo.tziomakas.news"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "945813550048-ugkpu9ts7cub7r9g5cgerqn2frrcfuj4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "theo.tziomakas.news",
+            "certificate_hash": "4292fcd954c2f2b9c7e184a487f8779878b7cc89"
+          }
+        },
+        {
+          "client_id": "945813550048-8j0lotv5dh2atjmdmn7u8njg44tgqfs6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAycRpO-Gt1yc3nAO5U4Vc3bWzWu1RuLmU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "945813550048-8j0lotv5dh2atjmdmn7u8njg44tgqfs6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
