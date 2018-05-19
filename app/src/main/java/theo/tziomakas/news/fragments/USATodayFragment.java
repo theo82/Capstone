@@ -26,6 +26,7 @@ import theo.tziomakas.news.adapters.NewsAdapter;
 import theo.tziomakas.news.adapters.SimpleDividerItemDecoration;
 import theo.tziomakas.news.loaders.USATodayLoader;
 import theo.tziomakas.news.model.News;
+import theo.tziomakas.news.widget.UpdateNewsWidgetService;
 
 
 /**
@@ -72,7 +73,7 @@ public class USATodayFragment extends Fragment implements LoaderManager.LoaderCa
 
             getLoaderManager().initLoader(NEWS_LOADER_ID, null, this);
 
-            //UpdateNewsWidgetService.startBakingService(getContext(), (ArrayList<News>) newsArrayList);
+            UpdateNewsWidgetService.startBakingService(getContext(), (ArrayList<News>) newsArrayList);
 
 
 
@@ -106,6 +107,13 @@ public class USATodayFragment extends Fragment implements LoaderManager.LoaderCa
         return new USATodayLoader(getActivity(),newsUrl);
     }
 
+
+
+    @Override
+    public void onLoaderReset(Loader<Object> loader) {
+
+    }
+
     @Override
     public void onLoadFinished(Loader<Object> loader, Object data) {
         int id = loader.getId();
@@ -131,13 +139,6 @@ public class USATodayFragment extends Fragment implements LoaderManager.LoaderCa
             }
         }
     }
-
-    @Override
-    public void onLoaderReset(Loader<Object> loader) {
-
-    }
-
-    @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 

@@ -27,6 +27,7 @@ import theo.tziomakas.news.adapters.SimpleDividerItemDecoration;
 import theo.tziomakas.news.loaders.AlJazeeraLoader;
 import theo.tziomakas.news.loaders.USATodayLoader;
 import theo.tziomakas.news.model.News;
+import theo.tziomakas.news.widget.UpdateNewsWidgetService;
 
 
 /**
@@ -70,7 +71,7 @@ public class AlJazeeraFragment extends Fragment implements LoaderManager.LoaderC
             adapter = new NewsAdapter(getActivity(), newsArrayList);
             mRecyclerView.setAdapter(adapter);
 
-            //UpdateNewsWidgetService.startBakingService(getContext(), (ArrayList<News>) newsArrayList);
+            UpdateNewsWidgetService.startBakingService(getContext(), (ArrayList<News>) newsArrayList);
 
 
             getLoaderManager().initLoader(NEWS_LOADER_ID, null, this);
@@ -87,7 +88,7 @@ public class AlJazeeraFragment extends Fragment implements LoaderManager.LoaderC
             adapter = new NewsAdapter(getActivity(), newsArrayList);
             mRecyclerView.setAdapter(adapter);
 
-            //UpdateNewsWidgetService.startBakingService(getContext(), (ArrayList<News>) newsArrayList);
+            UpdateNewsWidgetService.startBakingService(getContext(), (ArrayList<News>) newsArrayList);
 
 
         }
