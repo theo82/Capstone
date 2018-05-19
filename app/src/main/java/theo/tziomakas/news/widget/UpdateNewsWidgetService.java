@@ -24,9 +24,13 @@ public class UpdateNewsWidgetService extends IntentService {
     }
 
     public static void startBakingService(Context context, ArrayList<News> news) {
-        Intent intent = new Intent(context, UpdateNewsWidgetService.class);
-        intent.putExtra("news_list",news);
-        context.startService(intent);
+        if(context == null){
+            return;
+        }else {
+            Intent intent = new Intent(context, UpdateNewsWidgetService.class);
+            intent.putExtra("news_list", news);
+            context.startService(intent);
+        }
     }
 
     @Override

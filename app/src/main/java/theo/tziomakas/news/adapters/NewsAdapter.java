@@ -27,9 +27,17 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     private Context context;
     private ArrayList<News> newsList;
 
-    public NewsAdapter(Context context, ArrayList<News> newsList) {
+
+
+    final private ListItemClickListener lOnClickListener;
+
+    public interface ListItemClickListener {
+        void onListItemClick(int clickedItemIndex);
+    }
+    public NewsAdapter(Context context, ArrayList<News> news,  ListItemClickListener mClickHandler ){
         this.context = context;
-        this.newsList = newsList;
+        this.newsList = news;
+        this.lOnClickListener = mClickHandler;
     }
 
     @Override
@@ -95,7 +103,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         notifyDataSetChanged();
     }
 
-    public class NewsViewHolder extends RecyclerView.ViewHolder {
+    public class NewsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView mImageView;
         TextView mTitle;
         TextView mAuthor;
@@ -103,11 +111,19 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
         public NewsViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
+
 
             mImageView = itemView.findViewById(R.id.news_image);
             mTitle = itemView.findViewById(R.id.news_title);
             mAuthor = itemView.findViewById(R.id.news_author);
             mDate = itemView.findViewById(R.id.news_date);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int clickedPosition = getAdapterPosition();
+            lOnClickListener.onListItemClick(clickedPosition);
         }
     }
 

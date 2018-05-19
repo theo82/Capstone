@@ -1,6 +1,8 @@
 package theo.tziomakas.news.fragments;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
@@ -20,7 +22,9 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import theo.tziomakas.news.DetailActivity;
 import theo.tziomakas.news.R;
 import theo.tziomakas.news.adapters.NewsAdapter;
 import theo.tziomakas.news.adapters.SimpleDividerItemDecoration;
@@ -32,10 +36,9 @@ import theo.tziomakas.news.widget.UpdateNewsWidgetService;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class USATodayFragment extends Fragment implements LoaderManager.LoaderCallbacks<Object> {
+public class USATodayFragment extends Fragment implements LoaderManager.LoaderCallbacks<Object>, NewsAdapter.ListItemClickListener {
 
-    private Boolean isStarted = false;
-    private Boolean isVisible = false;
+    private Boolean isVisible = true;
 
     private static final String LOG_TAG = USATodayFragment.class.getName();
     private static final int NEWS_LOADER_ID = 0;
@@ -55,6 +58,8 @@ public class USATodayFragment extends Fragment implements LoaderManager.LoaderCa
     }
 
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,7 +76,8 @@ public class USATodayFragment extends Fragment implements LoaderManager.LoaderCa
             mRecyclerView.setLayoutManager(manager);
             mRecyclerView.setHasFixedSize(true);
             mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(getActivity()));
-            adapter = new NewsAdapter(getActivity(), newsArrayList);
+
+            adapter = new NewsAdapter(getActivity(),newsArrayList,this);
             mRecyclerView.setAdapter(adapter);
 
             getLoaderManager().initLoader(NEWS_LOADER_ID, null, this);
@@ -88,10 +94,10 @@ public class USATodayFragment extends Fragment implements LoaderManager.LoaderCa
             mRecyclerView.setLayoutManager(manager);
             mRecyclerView.setHasFixedSize(true);
             mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(getActivity()));
-            adapter = new NewsAdapter(getActivity(), newsArrayList);
+            adapter = new NewsAdapter(getActivity(),newsArrayList,this);
             mRecyclerView.setAdapter(adapter);
 
-            UpdateNewsWidgetService.startBakingService(getContext(), (ArrayList<News>) newsArrayList);
+            //UpdateNewsWidgetService.startBakingService(getContext(), (ArrayList<News>) newsArrayList);
 
 
         }
@@ -112,7 +118,6 @@ public class USATodayFragment extends Fragment implements LoaderManager.LoaderCa
     }
 
 
-
     @Override
     public void onLoaderReset(Loader<Object> loader) {
 
@@ -129,13 +134,15 @@ public class USATodayFragment extends Fragment implements LoaderManager.LoaderCa
                 adapter.clear();
                 adapter.setNewsData(newsArrayList);
 
-                newsTitlesToJson = new Gson().toJson(newsArrayList);
+                if(isVisible != null && isVisible) {
+                    newsTitlesToJson = new Gson().toJson(newsArrayList);
 
-                PreferenceManager.getDefaultSharedPreferences(getActivity())
-                        .edit().putString("news",newsTitlesToJson)
-                        .apply();
+                    PreferenceManager.getDefaultSharedPreferences(getActivity())
+                            .edit().putString("news", newsTitlesToJson)
+                            .commit();
 
-                Log.v(LOG_TAG, newsTitlesToJson);
+                    Log.v(LOG_TAG, newsTitlesToJson);
+                }
 
 
             }else{
@@ -171,10 +178,18 @@ public class USATodayFragment extends Fragment implements LoaderManager.LoaderCa
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
 
-        if(isStarted && isVisible){
-            UpdateNewsWidgetService.startBakingService(getActivity(),newsArrayList);
+        if(isVisibleToUser){
+            new UpdateNewsWidgetService().startBakingService(getContext(),newsArrayList);
         }
     }
 
 
+    @Override
+    public void onListItemClick(int clickedItemIndex) {
+        Intent i = new Intent(getActivity(), DetailActivity.class);
+        i.putExtra("title",newsArrayList.get(clickedItemIndex).getTitle());
+        i.putExtra("description",newsArrayList.get(clickedItemIndex).getDescription());
+        Log.v(LOG_TAG,newsArrayList.get(clickedItemIndex).getTitle());
+        startActivity(i);
+    }
 }

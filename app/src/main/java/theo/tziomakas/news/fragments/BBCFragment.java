@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import theo.tziomakas.news.R;
 import theo.tziomakas.news.adapters.NewsAdapter;
@@ -32,7 +33,7 @@ import theo.tziomakas.news.widget.UpdateNewsWidgetService;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BBCFragment extends Fragment implements LoaderManager.LoaderCallbacks<Object> {
+public class BBCFragment extends Fragment implements LoaderManager.LoaderCallbacks<Object>,NewsAdapter.ListItemClickListener {
     private static final String LOG_TAG = BBCFragment.class.getName();
     private static final int NEWS_LOADER_ID = 0;
     private String newsUrl;
@@ -69,7 +70,8 @@ public class BBCFragment extends Fragment implements LoaderManager.LoaderCallbac
             mRecyclerView.setLayoutManager(manager);
             mRecyclerView.setHasFixedSize(true);
             mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(getActivity()));
-            adapter = new NewsAdapter(getActivity(), newsArrayList);
+            adapter = new NewsAdapter(getActivity(),newsArrayList,this);
+
             mRecyclerView.setAdapter(adapter);
 
             UpdateNewsWidgetService.startBakingService(getContext(), (ArrayList<News>) newsArrayList);
@@ -86,7 +88,7 @@ public class BBCFragment extends Fragment implements LoaderManager.LoaderCallbac
             mRecyclerView.setLayoutManager(manager);
             mRecyclerView.setHasFixedSize(true);
             mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(getActivity()));
-            adapter = new NewsAdapter(getActivity(), newsArrayList);
+            adapter = new NewsAdapter(getActivity(),newsArrayList, (NewsAdapter.ListItemClickListener) this);
             mRecyclerView.setAdapter(adapter);
 
             //UpdateNewsWidgetService.startBakingService(getContext(), (ArrayList<News>) newsArrayList);
@@ -161,10 +163,22 @@ public class BBCFragment extends Fragment implements LoaderManager.LoaderCallbac
         }
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        if(isVisibleToUser){
+            new UpdateNewsWidgetService().startBakingService(getContext(),newsArrayList);
+        }
+    }
     public void showError(){
         mRecyclerView.setVisibility(View.GONE);
         errorTextView.setVisibility(View.VISIBLE);
     }
 
 
+    @Override
+    public void onListItemClick(int clickedItemIndex) {
+
+    }
 }

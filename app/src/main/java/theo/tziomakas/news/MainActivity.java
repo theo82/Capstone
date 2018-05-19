@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         mSectionsPagerAdapter = new SectionsPageAdapter(getSupportFragmentManager());
 
         mViewPager.setAdapter(mSectionsPagerAdapter);
-
+        mViewPager.setOffscreenPageLimit(1);
         mTabLayout = (TabLayout)findViewById(R.id.main_tabs);
         //mTabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FF0000"));
         //mTabLayout.setSelectedTabIndicatorHeight((int) (5 * getResources().getDisplayMetrics().density));
