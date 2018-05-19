@@ -34,6 +34,9 @@ import theo.tziomakas.news.widget.UpdateNewsWidgetService;
  */
 public class USATodayFragment extends Fragment implements LoaderManager.LoaderCallbacks<Object> {
 
+    private Boolean isStarted = false;
+    private Boolean isVisible = false;
+
     private static final String LOG_TAG = USATodayFragment.class.getName();
     private static final int NEWS_LOADER_ID = 0;
     private String newsUrl;
@@ -73,7 +76,7 @@ public class USATodayFragment extends Fragment implements LoaderManager.LoaderCa
 
             getLoaderManager().initLoader(NEWS_LOADER_ID, null, this);
 
-            UpdateNewsWidgetService.startBakingService(getContext(), (ArrayList<News>) newsArrayList);
+            //UpdateNewsWidgetService.startBakingService(getContext(), (ArrayList<News>) newsArrayList);
 
 
 
@@ -163,4 +166,15 @@ public class USATodayFragment extends Fragment implements LoaderManager.LoaderCa
         mRecyclerView.setVisibility(View.GONE);
         errorTextView.setVisibility(View.VISIBLE);
     }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        if(isStarted && isVisible){
+            UpdateNewsWidgetService.startBakingService(getActivity(),newsArrayList);
+        }
+    }
+
+
 }

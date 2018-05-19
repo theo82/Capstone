@@ -44,7 +44,8 @@ public class BBCFragment extends Fragment implements LoaderManager.LoaderCallbac
     private static final String ARRAY_LIST = "list_view";
     private ArrayList<News> newsArrayList;
     private static final String LAYOUT_STATE = "BBCNewsFragment.recycler.layout";
-
+    private boolean isStarted =false;
+    private boolean isVisible = false;
 
 
     public BBCFragment() {
@@ -88,7 +89,7 @@ public class BBCFragment extends Fragment implements LoaderManager.LoaderCallbac
             adapter = new NewsAdapter(getActivity(), newsArrayList);
             mRecyclerView.setAdapter(adapter);
 
-            UpdateNewsWidgetService.startBakingService(getContext(), (ArrayList<News>) newsArrayList);
+            //UpdateNewsWidgetService.startBakingService(getContext(), (ArrayList<News>) newsArrayList);
 
 
         }
@@ -164,4 +165,6 @@ public class BBCFragment extends Fragment implements LoaderManager.LoaderCallbac
         mRecyclerView.setVisibility(View.GONE);
         errorTextView.setVisibility(View.VISIBLE);
     }
+
+
 }
