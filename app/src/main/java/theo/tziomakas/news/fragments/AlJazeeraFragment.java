@@ -45,6 +45,8 @@ public class AlJazeeraFragment extends Fragment implements LoaderManager.LoaderC
     private static final String ARRAY_LIST = "list_view";
     private ArrayList<News> newsArrayList;
     private static final String LAYOUT_STATE = "AlJazeera.recycler.layout";
+    private boolean isStarted = false;
+    private boolean isVisible = false;
 
     public AlJazeeraFragment() {
         // Required empty public constructor
@@ -88,7 +90,7 @@ public class AlJazeeraFragment extends Fragment implements LoaderManager.LoaderC
             adapter = new NewsAdapter(getActivity(), newsArrayList);
             mRecyclerView.setAdapter(adapter);
 
-            UpdateNewsWidgetService.startBakingService(getContext(), (ArrayList<News>) newsArrayList);
+            //UpdateNewsWidgetService.startBakingService(getContext(), (ArrayList<News>) newsArrayList);
 
 
         }
@@ -159,4 +161,6 @@ public class AlJazeeraFragment extends Fragment implements LoaderManager.LoaderC
         mRecyclerView.setVisibility(View.GONE);
         errorTextView.setVisibility(View.VISIBLE);
     }
+
+
 }
