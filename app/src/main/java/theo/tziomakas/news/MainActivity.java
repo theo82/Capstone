@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         mTabLayout = (TabLayout)findViewById(R.id.main_tabs);
         //mTabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FF0000"));
         //mTabLayout.setSelectedTabIndicatorHeight((int) (5 * getResources().getDisplayMetrics().density));
-        mTabLayout.setTabTextColors(Color.parseColor("#727272"), Color.parseColor("#ffffff"));
+        mTabLayout.setTabTextColors(Color.parseColor("#460b1f"), Color.parseColor("#ffffff"));
         mTabLayout.setupWithViewPager(mViewPager);
 
     }
