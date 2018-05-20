@@ -1,6 +1,6 @@
 package theo.tziomakas.news.fragments;
 
-
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import theo.tziomakas.news.DetailActivity;
 import theo.tziomakas.news.R;
@@ -28,16 +29,17 @@ import theo.tziomakas.news.adapters.NewsAdapter;
 import theo.tziomakas.news.adapters.SimpleDividerItemDecoration;
 import theo.tziomakas.news.loaders.GenericLoader;
 import theo.tziomakas.news.model.News;
+import theo.tziomakas.news.widget.NewsAppWidgetProvider;
 import theo.tziomakas.news.widget.UpdateNewsWidgetService;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class USATodayFragment extends Fragment implements LoaderManager.LoaderCallbacks<Object>, NewsAdapter.ListItemClickListener {
+public class NewsFragment extends Fragment implements LoaderManager.LoaderCallbacks<Object>, NewsAdapter.ListItemClickListener {
 
     private Boolean isVisible;
-    private static final String LOG_TAG = USATodayFragment.class.getName();
+    private static final String LOG_TAG = NewsFragment.class.getName();
     private static final int NEWS_LOADER_ID = 0;
     private String newsUrl;
 
@@ -50,8 +52,26 @@ public class USATodayFragment extends Fragment implements LoaderManager.LoaderCa
     private static final String LAYOUT_STATE = "USATodayFragment.recycler.layout";
 
     String newsTitlesToJson;
-    public USATodayFragment() {
+    public NewsFragment() {
         // Required empty public constructor
+    }
+
+
+    public static NewsFragment newInstance(String newsUrl){
+        Bundle bundle = new Bundle();
+        bundle.putString("url", newsUrl);
+
+
+        NewsFragment fragment = new NewsFragment();
+        fragment.setArguments(bundle);
+
+        return fragment;
+    }
+
+    private void readBundle(Bundle bundle) {
+        if (bundle != null) {
+            newsUrl = bundle.getString("url");
+        }
     }
 
 
@@ -64,6 +84,9 @@ public class USATodayFragment extends Fragment implements LoaderManager.LoaderCa
 
         if(savedInstanceState == null) {
             newsArrayList = new ArrayList<>();
+
+
+            readBundle(getArguments());
 
             mRecyclerView = v.findViewById(R.id.news_recycler_view);
             errorTextView = v.findViewById(R.id.errorTextView);
@@ -81,6 +104,10 @@ public class USATodayFragment extends Fragment implements LoaderManager.LoaderCa
 
         }else{
             newsArrayList = savedInstanceState.getParcelableArrayList(ARRAY_LIST);
+
+            readBundle(getArguments());
+
+
             errorTextView = v.findViewById(R.id.errorTextView);
             mRecyclerView = v.findViewById(R.id.news_recycler_view);
             LinearLayoutManager manager = new LinearLayoutManager(getActivity());
@@ -102,12 +129,10 @@ public class USATodayFragment extends Fragment implements LoaderManager.LoaderCa
     @Override
     public Loader onCreateLoader(int id, Bundle args) {
 
-        if(id == NEWS_LOADER_ID){
-            newsUrl = "https://newsapi.org/v2/top-headlines?sources=usa-today&apiKey=98b995b151264acdb35e751ff6d22a3c";
-
-        }
 
         return new GenericLoader(getActivity(),newsUrl);
+
+
     }
 
 
@@ -169,9 +194,9 @@ public class USATodayFragment extends Fragment implements LoaderManager.LoaderCa
             newsTitlesToJson = new Gson().toJson(newsArrayList);
 
             if(getActivity() != null){
-            PreferenceManager.getDefaultSharedPreferences(getActivity())
-                    .edit().putString("news", newsTitlesToJson)
-                    .commit();
+                PreferenceManager.getDefaultSharedPreferences(getActivity())
+                        .edit().putString("news", newsTitlesToJson)
+                        .commit();
 
 
                 new UpdateNewsWidgetService().startBakingService(getActivity(), newsArrayList);
