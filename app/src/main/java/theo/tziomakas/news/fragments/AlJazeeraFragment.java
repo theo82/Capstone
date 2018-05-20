@@ -122,14 +122,6 @@ public class AlJazeeraFragment extends Fragment implements LoaderManager.LoaderC
                 adapter.clear();
                 adapter.setNewsData(newsArrayList);
 
-                String newsTitlesToJson = new Gson().toJson(newsArrayList);
-
-                PreferenceManager.getDefaultSharedPreferences(getActivity())
-                        .edit().putString("news",newsTitlesToJson)
-                        .apply();
-
-                //UpdateNewsWidgetService.startBakingService(getContext(), (ArrayList<News>) newsArrayList);
-                Log.v(LOG_TAG, newsTitlesToJson);
             }else{
                 showError();
             }

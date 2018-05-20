@@ -125,13 +125,6 @@ public class BBCFragment extends Fragment implements LoaderManager.LoaderCallbac
                 adapter.clear();
                 adapter.setNewsData(newsArrayList);
 
-                String newsTitlesToJson = new Gson().toJson(newsArrayList);
-
-                PreferenceManager.getDefaultSharedPreferences(getActivity())
-                        .edit().putString("news",newsTitlesToJson)
-                        .apply();
-
-                Log.v(LOG_TAG, newsTitlesToJson);
             }else{
                 showError();
             }
