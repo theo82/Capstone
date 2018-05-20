@@ -20,12 +20,11 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import theo.tziomakas.news.R;
 import theo.tziomakas.news.adapters.NewsAdapter;
 import theo.tziomakas.news.adapters.SimpleDividerItemDecoration;
-import theo.tziomakas.news.loaders.BBCNewsLoader;
+import theo.tziomakas.news.loaders.GenericLoader;
 import theo.tziomakas.news.model.News;
 import theo.tziomakas.news.widget.UpdateNewsWidgetService;
 
@@ -75,7 +74,7 @@ public class BBCFragment extends Fragment implements LoaderManager.LoaderCallbac
 
             mRecyclerView.setAdapter(adapter);
 
-            UpdateNewsWidgetService.startBakingService(getContext(), (ArrayList<News>) newsArrayList);
+            //UpdateNewsWidgetService.startBakingService(getContext(), (ArrayList<News>) newsArrayList);
 
 
             getLoaderManager().initLoader(NEWS_LOADER_ID, null, this);
@@ -110,7 +109,7 @@ public class BBCFragment extends Fragment implements LoaderManager.LoaderCallbac
 
         }
 
-        return new BBCNewsLoader(getActivity(),newsUrl);
+        return new GenericLoader(getActivity(),newsUrl);
     }
 
     @Override

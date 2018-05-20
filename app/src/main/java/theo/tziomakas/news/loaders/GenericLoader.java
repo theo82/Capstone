@@ -8,13 +8,13 @@ import java.util.List;
 import theo.tziomakas.news.utils.NetworkUtils;
 import theo.tziomakas.news.model.News;
 
-public class USATodayLoader extends AsyncTaskLoader<List<News>> {
+public class GenericLoader extends AsyncTaskLoader<List<News>> {
 
-    private static final String LOG_TAG = USATodayLoader.class.getName();
+    private static final String LOG_TAG = GenericLoader.class.getName();
 
     String url;
 
-    public USATodayLoader(Context context, String url) {
+    public GenericLoader(Context context, String url) {
         super(context);
         this.url = url;
     }

@@ -20,13 +20,11 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import theo.tziomakas.news.R;
 import theo.tziomakas.news.adapters.NewsAdapter;
 import theo.tziomakas.news.adapters.SimpleDividerItemDecoration;
-import theo.tziomakas.news.loaders.AlJazeeraLoader;
-import theo.tziomakas.news.loaders.USATodayLoader;
+import theo.tziomakas.news.loaders.GenericLoader;
 import theo.tziomakas.news.model.News;
 import theo.tziomakas.news.widget.UpdateNewsWidgetService;
 
@@ -75,7 +73,7 @@ public class AlJazeeraFragment extends Fragment implements LoaderManager.LoaderC
             adapter = new NewsAdapter(getActivity(),newsArrayList, (NewsAdapter.ListItemClickListener) this);
             mRecyclerView.setAdapter(adapter);
 
-            UpdateNewsWidgetService.startBakingService(getContext(), (ArrayList<News>) newsArrayList);
+            //UpdateNewsWidgetService.startBakingService(getContext(), (ArrayList<News>) newsArrayList);
 
 
             getLoaderManager().initLoader(NEWS_LOADER_ID, null, this);
@@ -108,7 +106,7 @@ public class AlJazeeraFragment extends Fragment implements LoaderManager.LoaderC
 
         }
 
-        return new AlJazeeraLoader(getActivity(),newsUrl);
+        return new GenericLoader(getActivity(),newsUrl);
     }
 
     @Override
