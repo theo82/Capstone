@@ -47,6 +47,7 @@ public class BBCFragment extends Fragment implements LoaderManager.LoaderCallbac
     private static final String LAYOUT_STATE = "BBCNewsFragment.recycler.layout";
     private boolean isStarted =false;
     private boolean isVisible = false;
+    private String newsTitlesToJson;
 
 
     public BBCFragment() {
@@ -168,7 +169,20 @@ public class BBCFragment extends Fragment implements LoaderManager.LoaderCallbac
         super.setUserVisibleHint(isVisibleToUser);
 
         if(isVisibleToUser){
-            new UpdateNewsWidgetService().startBakingService(getContext(),newsArrayList);
+
+            newsTitlesToJson = new Gson().toJson(newsArrayList);
+
+            if(getActivity() != null){
+                PreferenceManager.getDefaultSharedPreferences(getActivity())
+                        .edit().putString("news", newsTitlesToJson)
+                        .commit();
+
+
+                new UpdateNewsWidgetService().startBakingService(getActivity(), newsArrayList);
+            }
+
+            Log.v(LOG_TAG, newsTitlesToJson);
+
         }
     }
     public void showError(){

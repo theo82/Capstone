@@ -48,6 +48,7 @@ public class AlJazeeraFragment extends Fragment implements LoaderManager.LoaderC
     private static final String LAYOUT_STATE = "AlJazeera.recycler.layout";
     private boolean isStarted = false;
     private boolean isVisible = false;
+    String newsTitlesToJson;
 
     public AlJazeeraFragment() {
         // Required empty public constructor
@@ -164,9 +165,23 @@ public class AlJazeeraFragment extends Fragment implements LoaderManager.LoaderC
         super.setUserVisibleHint(isVisibleToUser);
 
         if(isVisibleToUser){
-            new UpdateNewsWidgetService().startBakingService(getActivity(),newsArrayList);
+
+            newsTitlesToJson = new Gson().toJson(newsArrayList);
+
+            if(getActivity() != null){
+                PreferenceManager.getDefaultSharedPreferences(getActivity())
+                        .edit().putString("news", newsTitlesToJson)
+                        .commit();
+
+
+                new UpdateNewsWidgetService().startBakingService(getActivity(), newsArrayList);
+            }
+
+            Log.v(LOG_TAG, newsTitlesToJson);
+
         }
     }
+
     public void showError(){
         mRecyclerView.setVisibility(View.GONE);
         errorTextView.setVisibility(View.VISIBLE);

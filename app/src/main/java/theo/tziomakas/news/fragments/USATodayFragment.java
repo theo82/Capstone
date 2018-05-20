@@ -171,13 +171,12 @@ public class USATodayFragment extends Fragment implements LoaderManager.LoaderCa
 
             newsTitlesToJson = new Gson().toJson(newsArrayList);
 
+            if(getActivity() != null){
             PreferenceManager.getDefaultSharedPreferences(getActivity())
                     .edit().putString("news", newsTitlesToJson)
                     .commit();
 
-            if(getActivity() == null) {
-                return;
-            }else{
+
                 new UpdateNewsWidgetService().startBakingService(getActivity(), newsArrayList);
             }
 
