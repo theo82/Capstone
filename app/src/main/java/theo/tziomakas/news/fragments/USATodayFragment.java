@@ -30,6 +30,7 @@ import theo.tziomakas.news.adapters.NewsAdapter;
 import theo.tziomakas.news.adapters.SimpleDividerItemDecoration;
 import theo.tziomakas.news.loaders.USATodayLoader;
 import theo.tziomakas.news.model.News;
+import theo.tziomakas.news.widget.NewsAppWidgetProvider;
 import theo.tziomakas.news.widget.UpdateNewsWidgetService;
 
 
@@ -38,8 +39,7 @@ import theo.tziomakas.news.widget.UpdateNewsWidgetService;
  */
 public class USATodayFragment extends Fragment implements LoaderManager.LoaderCallbacks<Object>, NewsAdapter.ListItemClickListener {
 
-    private Boolean isVisible = true;
-
+    private Boolean isVisible;
     private static final String LOG_TAG = USATodayFragment.class.getName();
     private static final int NEWS_LOADER_ID = 0;
     private String newsUrl;
@@ -56,8 +56,6 @@ public class USATodayFragment extends Fragment implements LoaderManager.LoaderCa
     public USATodayFragment() {
         // Required empty public constructor
     }
-
-
 
 
     @Override
@@ -83,8 +81,6 @@ public class USATodayFragment extends Fragment implements LoaderManager.LoaderCa
             getLoaderManager().initLoader(NEWS_LOADER_ID, null, this);
 
             //UpdateNewsWidgetService.startBakingService(getContext(), (ArrayList<News>) newsArrayList);
-
-
 
         }else{
             newsArrayList = savedInstanceState.getParcelableArrayList(ARRAY_LIST);
@@ -134,15 +130,7 @@ public class USATodayFragment extends Fragment implements LoaderManager.LoaderCa
                 adapter.clear();
                 adapter.setNewsData(newsArrayList);
 
-                if(isVisible != null && isVisible) {
-                    newsTitlesToJson = new Gson().toJson(newsArrayList);
 
-                    PreferenceManager.getDefaultSharedPreferences(getActivity())
-                            .edit().putString("news", newsTitlesToJson)
-                            .commit();
-
-                    Log.v(LOG_TAG, newsTitlesToJson);
-                }
 
 
             }else{
@@ -150,6 +138,7 @@ public class USATodayFragment extends Fragment implements LoaderManager.LoaderCa
             }
         }
     }
+
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
@@ -179,10 +168,23 @@ public class USATodayFragment extends Fragment implements LoaderManager.LoaderCa
         super.setUserVisibleHint(isVisibleToUser);
 
         if(isVisibleToUser){
-            new UpdateNewsWidgetService().startBakingService(getContext(),newsArrayList);
+
+            newsTitlesToJson = new Gson().toJson(newsArrayList);
+
+            PreferenceManager.getDefaultSharedPreferences(getActivity())
+                    .edit().putString("news", newsTitlesToJson)
+                    .commit();
+
+            if(getActivity() == null) {
+                return;
+            }else{
+                new UpdateNewsWidgetService().startBakingService(getActivity(), newsArrayList);
+            }
+
+            Log.v(LOG_TAG, newsTitlesToJson);
+
         }
     }
-
 
     @Override
     public void onListItemClick(int clickedItemIndex) {

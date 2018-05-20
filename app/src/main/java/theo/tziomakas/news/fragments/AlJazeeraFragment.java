@@ -127,6 +127,7 @@ public class AlJazeeraFragment extends Fragment implements LoaderManager.LoaderC
                         .edit().putString("news",newsTitlesToJson)
                         .apply();
 
+                //UpdateNewsWidgetService.startBakingService(getContext(), (ArrayList<News>) newsArrayList);
                 Log.v(LOG_TAG, newsTitlesToJson);
             }else{
                 showError();
@@ -163,7 +164,7 @@ public class AlJazeeraFragment extends Fragment implements LoaderManager.LoaderC
         super.setUserVisibleHint(isVisibleToUser);
 
         if(isVisibleToUser){
-            new UpdateNewsWidgetService().startBakingService(getContext(),newsArrayList);
+            new UpdateNewsWidgetService().startBakingService(getActivity(),newsArrayList);
         }
     }
     public void showError(){
