@@ -4,9 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import theo.tziomakas.news.fragments.AlJazeeraFragment;
-import theo.tziomakas.news.fragments.BBCFragment;
-import theo.tziomakas.news.fragments.USATodayFragment;
+import theo.tziomakas.news.fragments.NewsFragment;
 
 
 public class SectionsPageAdapter extends FragmentPagerAdapter {
@@ -19,14 +17,14 @@ public class SectionsPageAdapter extends FragmentPagerAdapter {
 
         switch (position){
             case 0:
-                USATodayFragment cnnFragment = new USATodayFragment();
-                return cnnFragment;
+                NewsFragment fragment1 = NewsFragment.newInstance("https://newsapi.org/v2/top-headlines?sources=usa-today&apiKey=98b995b151264acdb35e751ff6d22a3c");
+                return fragment1;
             case 1:
-                BBCFragment bbcFragment = new BBCFragment();
-                return bbcFragment;
+                NewsFragment fragment2 = NewsFragment.newInstance("https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=98b995b151264acdb35e751ff6d22a3c");
+                return fragment2;
             case 2:
-                AlJazeeraFragment alJazeeraFragment = new AlJazeeraFragment();
-                return alJazeeraFragment;
+                NewsFragment fragment3 = NewsFragment.newInstance("https://newsapi.org/v2/top-headlines?sources=al-jazeera-english&apiKey=98b995b151264acdb35e751ff6d22a3c");
+                return fragment3;
             default:
                 return null;
         }
