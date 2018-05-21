@@ -1,6 +1,7 @@
 package theo.tziomakas.news.fragments;
 
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import theo.tziomakas.news.DetailActivity;
 import theo.tziomakas.news.R;
 import theo.tziomakas.news.adapters.NewsAdapter;
 import theo.tziomakas.news.adapters.SimpleDividerItemDecoration;
@@ -28,7 +30,7 @@ import theo.tziomakas.news.model.News;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FavouriteNewsFragment extends Fragment implements LoaderManager.LoaderCallbacks<Object>{
+public class FavouriteNewsFragment extends Fragment implements LoaderManager.LoaderCallbacks<Object>, NewsAdapter.ListItemClickListener {
 
     private ArrayList<News> newsArrayList;
     private RecyclerView mRecyclerView;
@@ -46,6 +48,22 @@ public class FavouriteNewsFragment extends Fragment implements LoaderManager.Loa
             FavouriteContract.FavouriteEntry.COLUMN_NEWS_PUBLISHED_AT
 
     };
+
+    public static final int INDEX_AUTHOR = 0;
+    public static final int INDEX_TITLE = 1;
+    public static final int INDEX_DESCRIPTION = 2;
+    public static final int INDEX_URL = 3;
+    public static final int INDEX_URL_TO_IMAGE = 4;
+    public static final int INDEX_PUBLISHED_AT = 5;
+
+
+
+    private String author;
+    private String title;
+    private String description;
+    private String url;
+    private String urlToImage;
+    private String publishedDate;
 
     public FavouriteNewsFragment() {
         // Required empty public constructor
@@ -69,11 +87,11 @@ public class FavouriteNewsFragment extends Fragment implements LoaderManager.Loa
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(getActivity()));
 
-        //adapter = new NewsAdapter(getActivity(),newsArrayList,this);
+        adapter = new NewsAdapter(getActivity(),newsArrayList, this);
 
 
         //adapter = new NewsAdapter(getActivity(),newsArrayList,this);
-        //mRecyclerView.setAdapter(adapter);
+        mRecyclerView.setAdapter(adapter);
 
         getLoaderManager().initLoader(FAV_NEWS_LOADER,null,this);
 
@@ -110,22 +128,22 @@ public class FavouriteNewsFragment extends Fragment implements LoaderManager.Loa
 
             Cursor dataCursor = (Cursor) data;
             // Cast Object to display a list of movies from the net.
-            ArrayList<News> n = new ArrayList<>();
+            newsArrayList = new ArrayList<>();
 
             if (dataCursor != null && dataCursor.getCount() > 0) {
 
                 while (dataCursor.moveToNext()) {
-                    String author = dataCursor.getString(0);
-                    String title = dataCursor.getString(1);
-                    String description = dataCursor.getString(2);
-                    String url = dataCursor.getString(3);
-                    String urlToImage = dataCursor.getString(4);
-                    String publishedDate = dataCursor.getString(5);
+                     author = dataCursor.getString(0);
+                     title = dataCursor.getString(1);
+                     description = dataCursor.getString(2);
+                     url = dataCursor.getString(3);
+                     urlToImage = dataCursor.getString(4);
+                     publishedDate = dataCursor.getString(5);
 
-                    News news = new News(author,title,description,url,urlToImage,publishedDate);
-                    n.add(news);
+                    News n = new News(author,title,description,url,urlToImage,publishedDate);
+                    newsArrayList.add(n);
                 }
-                //adapter.setNewsData(n);
+                adapter.setNewsData(newsArrayList);
             }else{
                 //recyclerView.setVisibility(View.INVISIBLE);
                 //getLoaderManager().destroyLoader(MOVIES_LOADER_ID);
@@ -143,8 +161,16 @@ public class FavouriteNewsFragment extends Fragment implements LoaderManager.Loa
 
     }
 
-    public void showError(){
-        mRecyclerView.setVisibility(View.GONE);
-        errorTextView.setVisibility(View.VISIBLE);
+
+    @Override
+    public void onListItemClick(int clickedItemIndex) {
+        Intent i = new Intent(getActivity(), DetailActivity.class);
+        i.putExtra("author",newsArrayList.get(clickedItemIndex).getAuthor());
+        i.putExtra("image",newsArrayList.get(clickedItemIndex).getUrlToImage());
+        i.putExtra("title",newsArrayList.get(clickedItemIndex).getTitle());
+        i.putExtra("description",newsArrayList.get(clickedItemIndex).getDescription());
+        i.putExtra("url",newsArrayList.get(clickedItemIndex).getUrl());
+        i.putExtra("date",newsArrayList.get(clickedItemIndex).getPublishedDate());
+        startActivity(i);
     }
 }
