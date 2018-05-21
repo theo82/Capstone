@@ -149,6 +149,7 @@ public class DetailActivity extends AppCompatActivity {
 
 
                     Uri newsTitleOfFavNews = FavouriteContract.FavouriteEntry.buildNewsUriWithTitle(newsTitle);
+                    //String title = uri.getPathSegments().get(1);// Get the task ID from the URI path
 
                    getContentResolver().delete(
                             newsTitleOfFavNews,

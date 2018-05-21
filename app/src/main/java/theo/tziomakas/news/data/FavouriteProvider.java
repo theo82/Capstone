@@ -120,9 +120,9 @@ public class FavouriteProvider extends ContentProvider {
         switch (match) {
             // Handle the single item case, recognized by the ID included in the URI path
             case CODE_FAVOURITE_WITH_TITLE:
-                //String id = uri.getPathSegments().get(1);// Get the task ID from the URI path
+                String title = uri.getPathSegments().get(1);// Get the task ID from the URI path
                 selection = FavouriteContract.FavouriteEntry.COLUMN_NEWS_TITLE + "=?";
-                selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
+                selectionArgs = new String[]{title};
                 movieDeleted =  db.delete(FavouriteContract.FavouriteEntry.TABLE_NAME, selection, selectionArgs);
 
 

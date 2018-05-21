@@ -35,6 +35,8 @@ public class FavouriteContract {
             return CONTENT_URI.buildUpon()
                     .appendPath(title)
                     .build();
+
+
         }
 
     }

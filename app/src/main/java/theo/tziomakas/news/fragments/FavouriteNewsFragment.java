@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -76,27 +77,42 @@ public class FavouriteNewsFragment extends Fragment implements LoaderManager.Loa
         View v = inflater.inflate(R.layout.common_fragment_layout, container, false);
 
 
-        newsArrayList = new ArrayList<>();
+        if(savedInstanceState == null) {
+            newsArrayList = new ArrayList<>();
 
 
+            errorTextView = v.findViewById(R.id.errorTextView);
+
+            mRecyclerView = v.findViewById(R.id.news_recycler_view);
+            LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+            mRecyclerView.setLayoutManager(manager);
+            mRecyclerView.setHasFixedSize(true);
+            mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(getActivity()));
+
+            adapter = new NewsAdapter(getActivity(), newsArrayList, this);
 
 
-        errorTextView = v.findViewById(R.id.errorTextView);
+            //adapter = new NewsAdapter(getActivity(),newsArrayList,this);
+            mRecyclerView.setAdapter(adapter);
 
-        mRecyclerView = v.findViewById(R.id.news_recycler_view);
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setLayoutManager(manager);
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(getActivity()));
+            getLoaderManager().initLoader(FAV_NEWS_LOADER, null, this);
+        }else{
+            newsArrayList = savedInstanceState.getParcelableArrayList("newsList");
 
-        adapter = new NewsAdapter(getActivity(),newsArrayList, this);
+            errorTextView = v.findViewById(R.id.errorTextView);
+
+            mRecyclerView = v.findViewById(R.id.news_recycler_view);
+            LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+            mRecyclerView.setLayoutManager(manager);
+            mRecyclerView.setHasFixedSize(true);
+            mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(getActivity()));
+
+            adapter = new NewsAdapter(getActivity(), newsArrayList, this);
 
 
-        //adapter = new NewsAdapter(getActivity(),newsArrayList,this);
-        mRecyclerView.setAdapter(adapter);
-
-        getLoaderManager().initLoader(FAV_NEWS_LOADER,null,this);
-
+            //adapter = new NewsAdapter(getActivity(),newsArrayList,this);
+            mRecyclerView.setAdapter(adapter);
+        }
 
 
         return v;
@@ -133,7 +149,7 @@ public class FavouriteNewsFragment extends Fragment implements LoaderManager.Loa
             newsArrayList = new ArrayList<>();
 
             if (dataCursor != null && dataCursor.getCount() > 0) {
-
+                dataCursor.moveToFirst();
                 while (dataCursor.moveToNext()) {
                      author = dataCursor.getString(0);
                      title = dataCursor.getString(1);
@@ -174,5 +190,11 @@ public class FavouriteNewsFragment extends Fragment implements LoaderManager.Loa
         i.putExtra("url",newsArrayList.get(clickedItemIndex).getUrl());
         i.putExtra("date",newsArrayList.get(clickedItemIndex).getPublishedDate());
         startActivity(i);
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList("newsList",newsArrayList);
     }
 }
