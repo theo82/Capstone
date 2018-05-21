@@ -204,6 +204,7 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
     @Override
     public void onListItemClick(int clickedItemIndex) {
         Intent i = new Intent(getActivity(), DetailActivity.class);
+        i.putExtra("author",newsArrayList.get(clickedItemIndex).getAuthor());
         i.putExtra("image",newsArrayList.get(clickedItemIndex).getUrlToImage());
         i.putExtra("title",newsArrayList.get(clickedItemIndex).getTitle());
         i.putExtra("description",newsArrayList.get(clickedItemIndex).getDescription());

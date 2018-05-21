@@ -78,9 +78,9 @@ public class MainActivity extends AppCompatActivity {
         if(item.getItemId() == R.id.main_logout_btn){
             FirebaseAuth.getInstance().signOut();
             sendToStart();
-        }else if(item.getItemId() == R.id.main_setting_btn){
-            //Intent settingsIntent = new Intent(MainActivity.this,SettingsActivity.class);
-            //tartActivity(settingsIntent);
+        }else if(item.getItemId() == R.id.fav_news_btn){
+            Intent favIntent = new Intent(MainActivity.this,FavouriteNewsActivity.class);
+            startActivity(favIntent);
         }
 
         return true;

@@ -23,17 +23,17 @@ public class FavouriteContract {
 
         public static final String COLUMN_NEWS_TITLE = "title";
 
-        public static final String COLUMN_MOVIE_DESCRIPTION = "description";
+        public static final String COLUMN_NEWS_DESCRIPTION = "description";
 
-        public static final String COLUMN_MOVIE_URL = "url";
+        public static final String COLUMN_NEWS_URL = "url";
 
-        public static final String COLUMN_MOVIE_URL_TO_IMAGE = "urlToImage";
+        public static final String COLUMN_NEWS_URL_TO_IMAGE = "urlToImage";
 
-        public static final String COLUMN_MOVIE_PUBLISHED_AT = "publishedAt";
+        public static final String COLUMN_NEWS_PUBLISHED_AT = "publishedAt";
 
-        public static Uri buildNewsUriWithId(String id){
+        public static Uri buildNewsUriWithTitle(String title){
             return CONTENT_URI.buildUpon()
-                    .appendPath(id)
+                    .appendPath(title)
                     .build();
         }
 

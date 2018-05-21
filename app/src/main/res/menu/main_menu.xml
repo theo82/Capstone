@@ -6,7 +6,7 @@
         android:id="@+id/main_logout_btn"
         android:title="Log out" />
     <item
-        android:id="@+id/main_setting_btn"
-        android:title="Account Settings" />
+        android:id="@+id/fav_news_btn"
+        android:title="Favorite News" />
 
 </menu>

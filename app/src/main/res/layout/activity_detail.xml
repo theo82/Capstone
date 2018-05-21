@@ -72,6 +72,17 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/detail_author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:padding="12dp"
+                    android:text="Recent News"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold" />
+
+                <TextView
                     android:id="@+id/detail_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -80,6 +91,8 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:textSize="16sp"
                     android:textStyle="bold" />
+
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -109,18 +122,6 @@
                     android:layout_height="wrap_content"
                     android:padding="12dp">
 
-                    <Button
-                        android:id="@+id/detail_share_btn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentTop="true"
-                        android:background="@color/colorPrimaryDark"
-                        android:onClick="onShare"
-                        android:src="@drawable/ic_clock"
-                        android:text="@string/share"
-                        android:textAllCaps="false"
-                        android:textColor="@android:color/white" />
 
                     <Button
                         android:id="@+id/detail_browser_btn"
@@ -140,8 +141,17 @@
                         android:textAllCaps="false"
                         android:textColor="@android:color/white" />
 
-
+                    <ToggleButton
+                        android:id="@+id/fav_news_btn"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/button_background_selector"
+                         />
                 </RelativeLayout>
+
+
             </LinearLayout>
 
 
@@ -150,13 +160,13 @@
     </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fav_fab"
+        android:id="@+id/share_floating_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_margin"
         android:elevation="5dp"
-        android:src="@drawable/ic_star_border_black_24dp"
+        android:src="@drawable/ic_share"
         app:layout_anchor="@+id/app_bar_layout"
         app:layout_anchorGravity="bottom|end"
         app:pressedTranslationZ="12dp" />

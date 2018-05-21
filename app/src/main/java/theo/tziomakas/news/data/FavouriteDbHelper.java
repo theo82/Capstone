@@ -34,13 +34,13 @@ public class FavouriteDbHelper extends SQLiteOpenHelper {
 
                         FavouriteContract.FavouriteEntry.COLUMN_NEWS_TITLE + " TEXT NOT NULL,"            +
 
-                        FavouriteContract.FavouriteEntry.COLUMN_MOVIE_DESCRIPTION + " TEXT NOT NULL, "        +
+                        FavouriteContract.FavouriteEntry.COLUMN_NEWS_DESCRIPTION + " TEXT NOT NULL, "        +
 
-                        FavouriteContract.FavouriteEntry.COLUMN_MOVIE_URL + " TEXT NOT NULL, "    +
+                        FavouriteContract.FavouriteEntry.COLUMN_NEWS_URL + " TEXT NOT NULL, "    +
 
-                        FavouriteContract.FavouriteEntry.COLUMN_MOVIE_URL_TO_IMAGE + " TEXT NOT NULL, "    +
+                        FavouriteContract.FavouriteEntry.COLUMN_NEWS_URL_TO_IMAGE + " TEXT NOT NULL, "    +
 
-                        FavouriteContract.FavouriteEntry.COLUMN_MOVIE_PUBLISHED_AT + " TEXT NOT NULL);";
+                        FavouriteContract.FavouriteEntry.COLUMN_NEWS_PUBLISHED_AT + " TEXT NOT NULL);";
 
 
 
