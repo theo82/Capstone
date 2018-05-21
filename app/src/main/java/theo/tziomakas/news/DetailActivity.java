@@ -71,6 +71,10 @@ public class DetailActivity extends AppCompatActivity {
         mShareBtn = (FloatingActionButton) findViewById(R.id.share_floating_btn);
         mFavBtn = (ToggleButton)findViewById(R.id.fav_news_btn);
 
+        mFavBtn.setTextOn(null);
+        mFavBtn.setText(null);
+        mFavBtn.setTextOff(null);
+
         newsAuthor = i.getStringExtra("author");
         newsImage = i.getStringExtra("image");
         newsTitle = i.getStringExtra("title");
@@ -144,13 +148,13 @@ public class DetailActivity extends AppCompatActivity {
                 }else {
 
 
-                    Uri newsTitleOfFavMovie = FavouriteContract.FavouriteEntry.buildNewsUriWithTitle(newsTitle);
+                    Uri newsTitleOfFavNews = FavouriteContract.FavouriteEntry.buildNewsUriWithTitle(newsTitle);
 
                    getContentResolver().delete(
-                            newsTitleOfFavMovie,
+                            newsTitleOfFavNews,
                             null,
                             null);
-                    Toast.makeText(DetailActivity.this, "Movie deleted from favourites ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailActivity.this, "News article deleted from favourites ", Toast.LENGTH_SHORT).show();
 
                 }
             }

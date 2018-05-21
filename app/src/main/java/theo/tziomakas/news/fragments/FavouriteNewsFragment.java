@@ -11,6 +11,7 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,8 +38,7 @@ public class FavouriteNewsFragment extends Fragment implements LoaderManager.Loa
     private NewsAdapter adapter;
     private static final int FAV_NEWS_LOADER = 1;
     private TextView errorTextView;
-
-
+    private Toolbar mToolbar;
     private static final String[] FAVOURITE_NEWS_PROJECTION = {
             FavouriteContract.FavouriteEntry.COLUMN_NEWS_AUTHOR,
             FavouriteContract.FavouriteEntry.COLUMN_NEWS_TITLE,
@@ -55,8 +55,6 @@ public class FavouriteNewsFragment extends Fragment implements LoaderManager.Loa
     public static final int INDEX_URL = 3;
     public static final int INDEX_URL_TO_IMAGE = 4;
     public static final int INDEX_PUBLISHED_AT = 5;
-
-
 
     private String author;
     private String title;
@@ -77,7 +75,11 @@ public class FavouriteNewsFragment extends Fragment implements LoaderManager.Loa
 
         View v = inflater.inflate(R.layout.common_fragment_layout, container, false);
 
+
         newsArrayList = new ArrayList<>();
+
+
+
 
         errorTextView = v.findViewById(R.id.errorTextView);
 
