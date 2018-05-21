@@ -42,23 +42,10 @@
         android:layout_alignBottom="@+id/news_image"
         android:layout_toEndOf="@+id/news_image"
         android:text="Theodosios Tziomakas"
-        android:textSize="12sp"
+        android:textSize="11sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintStart_toEndOf="@+id/news_image"
         app:layout_constraintTop_toBottomOf="@+id/news_title" />
 
-    <TextView
-        android:id="@+id/news_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/news_image"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="21dp"
-        android:text="2018-05-18"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.887"
-        app:layout_constraintStart_toEndOf="@+id/news_author"
-        app:layout_constraintTop_toBottomOf="@+id/news_title" />
 </RelativeLayout>

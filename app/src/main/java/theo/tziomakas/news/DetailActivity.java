@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,9 +41,8 @@ public class DetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar)findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
-        if(getSupportActionBar() != null){
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         Intent i = getIntent();
 
@@ -71,25 +71,19 @@ public class DetailActivity extends AppCompatActivity {
 
     }
 
+    public void onShare(View view){
+        Intent shareIntent = createShareNewsIntent();
+        startActivity(shareIntent);
+    }
+
+    public void onShowBrowser(View view){
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(newsUrl));
+        startActivity(browserIntent);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.detail_menu,menu);
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        super.onOptionsItemSelected(item);
-
-        if(item.getItemId() == R.id.detail_browser_btn){
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(newsUrl));
-            startActivity(browserIntent);
-        }else if(item.getItemId() == R.id.detail_share_btn){
-            Intent shareIntent = createShareNewsIntent();
-            startActivity(shareIntent);
-        }
 
         return true;
     }
