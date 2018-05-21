@@ -1,6 +1,5 @@
 package theo.tziomakas.news.fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -21,7 +20,6 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import theo.tziomakas.news.DetailActivity;
 import theo.tziomakas.news.R;
@@ -29,7 +27,6 @@ import theo.tziomakas.news.adapters.NewsAdapter;
 import theo.tziomakas.news.adapters.SimpleDividerItemDecoration;
 import theo.tziomakas.news.loaders.GenericLoader;
 import theo.tziomakas.news.model.News;
-import theo.tziomakas.news.widget.NewsAppWidgetProvider;
 import theo.tziomakas.news.widget.UpdateNewsWidgetService;
 
 
@@ -152,9 +149,6 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
                 adapter.clear();
                 adapter.setNewsData(newsArrayList);
 
-
-
-
             }else{
                 showError();
             }
@@ -210,8 +204,11 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
     @Override
     public void onListItemClick(int clickedItemIndex) {
         Intent i = new Intent(getActivity(), DetailActivity.class);
+        i.putExtra("image",newsArrayList.get(clickedItemIndex).getUrlToImage());
         i.putExtra("title",newsArrayList.get(clickedItemIndex).getTitle());
         i.putExtra("description",newsArrayList.get(clickedItemIndex).getDescription());
+        i.putExtra("url",newsArrayList.get(clickedItemIndex).getUrl());
+        i.putExtra("date",newsArrayList.get(clickedItemIndex).getPublishedDate());
         Log.v(LOG_TAG,newsArrayList.get(clickedItemIndex).getTitle());
         startActivity(i);
     }

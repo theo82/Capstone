@@ -25,6 +25,10 @@ public class SectionsPageAdapter extends FragmentPagerAdapter {
             case 2:
                 NewsFragment fragment3 = NewsFragment.newInstance("https://newsapi.org/v2/top-headlines?sources=al-jazeera-english&apiKey=98b995b151264acdb35e751ff6d22a3c");
                 return fragment3;
+            case 3:
+                NewsFragment fragment4 = NewsFragment.newInstance("https://newsapi.org/v2/top-headlines?sources=daily-mail&apiKey=98b995b151264acdb35e751ff6d22a3c");
+                return fragment4;
+
             default:
                 return null;
         }
@@ -33,7 +37,7 @@ public class SectionsPageAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 
     @Override
@@ -46,6 +50,8 @@ public class SectionsPageAdapter extends FragmentPagerAdapter {
                 return "BCC News";
             case 2:
                 return "AlJazeera";
+            case 3:
+                return "Daily Mail";
             default:
                 return null;
         }

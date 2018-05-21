@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">News</string>
+    <string name="app_name">Easy News</string>
     <string name="have_account">Already have account</string>
     <string name="need_account">Need a new account?</string>
     <string name="welcome">Welcome to Easy News</string>

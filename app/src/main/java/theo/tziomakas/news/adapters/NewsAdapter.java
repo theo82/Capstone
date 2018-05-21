@@ -66,8 +66,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         String newsAuthor = news.getAuthor();
         String newsDate = news.getPublishedDate();
 
-        String date1 = newsDate.substring(0,10);
-        String date2 = newsDate.substring(11,19);
+        //String date1 = newsDate.substring(0,10);
+        //String date2 = newsDate.substring(11,19);
         Picasso.with(context)
                 .load(newsImage)
                 .placeholder(R.drawable.ic_broken_image)
@@ -76,7 +76,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
         holder.mTitle.setText(newsTitle);
         holder.mAuthor.setText(newsAuthor);
-        holder.mDate.setText(date2 + ", Date: " + date1);
+       // holder.mDate.setText(date1);
 
         //Log.v(LOG_TAG,newsTitle);
 
@@ -112,7 +112,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         public NewsViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-
 
             mImageView = itemView.findViewById(R.id.news_image);
             mTitle = itemView.findViewById(R.id.news_title);
