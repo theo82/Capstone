@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -59,6 +60,16 @@ public class LoginActivity extends AppCompatActivity {
                 String email = mLoginEmail.getText().toString();
                 String pass = mLoginPassword.getText().toString();
 
+                if (TextUtils.isEmpty(email)) {
+                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(pass)) {
+                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 if(!TextUtils.isEmpty(email) || !TextUtils.isEmpty(pass)){
 
                     mProgress.setTitle("Logging in");
@@ -73,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        mForgotPass = (Button)findViewById(R.id.login_forgot_password_btn);
+        mForgotPass = (Button)findViewById(R.id.login_forgot_password);
         mForgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,21 +95,25 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void loginUser(String email, String pass) {
+    private void loginUser(final String email, final String pass) {
 
         mAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    mProgress.dismiss();
-                    sendToMain();
-                }else{
-                    mProgress.hide();
 
-                    Toast.makeText(LoginActivity.this,"Can not login",Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, String.valueOf(task.getException()));
+
+                if (task.isSuccessful()) {
+                        mProgress.dismiss();
+                        sendToMain();
+                    } else {
+                        mProgress.hide();
+
+                        Toast.makeText(LoginActivity.this, "Can not login", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, String.valueOf(task.getException()));
+                    }
                 }
-            }
+
+
         });
     }
 
