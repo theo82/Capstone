@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                 String email = mLoginEmail.getText().toString();
                 String pass = mLoginPassword.getText().toString();
 
-                if(!TextUtils.isEmpty(email) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(pass)){
+                if(!TextUtils.isEmpty(email) || !TextUtils.isEmpty(pass)){
 
                     mProgress.setTitle("Logging in");
                     mProgress.setMessage("Please wait while we check your credentials");

@@ -145,7 +145,7 @@ public class DetailActivity extends AppCompatActivity {
                         @Override
                         protected void onPostExecute(Void aVoid) {
                             super.onPostExecute(aVoid);
-                            Toast.makeText(DetailActivity.this, "Movie with title:  " + newsTitle + " was added", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(DetailActivity.this, "Article with title:  " + newsTitle + " was added", Toast.LENGTH_SHORT).show();
 
                         }
                     }.execute();

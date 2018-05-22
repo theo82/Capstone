@@ -70,6 +70,8 @@ public class RegisterActivity extends AppCompatActivity {
                     mProgress.show();
 
                     registerUser(displayName,email,password);
+                }else{
+                    Toast.makeText(RegisterActivity.this,"Fill of fields",Toast.LENGTH_LONG).show();
                 }
 
 

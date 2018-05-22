@@ -78,7 +78,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.886"
         app:layout_constraintStart_toStartOf="parent"
-
+        app:layout_constraintLeft_toRightOf="@id/textInputLayout4"
+        cob
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
 
 </android.support.constraint.ConstraintLayout>
