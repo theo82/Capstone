@@ -39,12 +39,15 @@ public class DetailActivity extends AppCompatActivity {
     private String newsImage;
     private String newsDate;
     private String newsDescription;
-    private static String NEWS_SHARE_HASHTAG ="#PopularMoviesApp";
+    private static String NEWS_SHARE_HASHTAG = "#PopularMoviesApp";
     private String date1;
     private String date2;
     private String newsUrl;
     private String newsAuthor;
     private Cursor favoriteCursor;
+
+    private static Bundle bundle = new Bundle();
+
 
 
     private Uri uri;
@@ -62,6 +65,7 @@ public class DetailActivity extends AppCompatActivity {
 
         Intent i = getIntent();
 
+
         mAuthor = (TextView) findViewById(R.id.detail_author);
 
         mImageView = (ImageView) findViewById(R.id.detail_image_view);
@@ -69,7 +73,7 @@ public class DetailActivity extends AppCompatActivity {
         mDate = (TextView) findViewById(R.id.detail_publish_date);
         mDescription = (TextView) findViewById(R.id.detail_description);
         mShareBtn = (FloatingActionButton) findViewById(R.id.share_floating_btn);
-        mFavBtn = (ToggleButton)findViewById(R.id.fav_news_btn);
+        mFavBtn = (ToggleButton) findViewById(R.id.fav_news_btn);
 
         mFavBtn.setTextOn(null);
         mFavBtn.setText(null);
@@ -110,7 +114,7 @@ public class DetailActivity extends AppCompatActivity {
         if (favoriteCursor.getCount() > 0) {
             try {
                 mFavBtn.setChecked(true);
-            }finally {
+            } finally {
                 favoriteCursor.close();
             }
         }
@@ -119,7 +123,7 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, final boolean isChecked) {
 
-                if(isChecked){
+                if (isChecked) {
                     new AsyncTask<Void, Void, Void>() {
                         @Override
                         protected Void doInBackground(Void... voids) {
@@ -131,7 +135,7 @@ public class DetailActivity extends AppCompatActivity {
                             contentValues.put(FavouriteContract.FavouriteEntry.COLUMN_NEWS_DESCRIPTION, newsDescription);
                             contentValues.put(FavouriteContract.FavouriteEntry.COLUMN_NEWS_URL, newsUrl);
                             contentValues.put(FavouriteContract.FavouriteEntry.COLUMN_NEWS_URL_TO_IMAGE, newsImage);
-                            contentValues.put(FavouriteContract.FavouriteEntry.COLUMN_NEWS_PUBLISHED_AT,newsDate);
+                            contentValues.put(FavouriteContract.FavouriteEntry.COLUMN_NEWS_PUBLISHED_AT, newsDate);
 
                             //The actual insertion in the db.
                             uri = getContentResolver().insert(FavouriteContract.FavouriteEntry.CONTENT_URI, contentValues);
@@ -145,13 +149,13 @@ public class DetailActivity extends AppCompatActivity {
 
                         }
                     }.execute();
-                }else {
+                } else {
 
 
                     Uri newsTitleOfFavNews = FavouriteContract.FavouriteEntry.buildNewsUriWithTitle(newsTitle);
                     //String title = uri.getPathSegments().get(1);// Get the task ID from the URI path
 
-                   getContentResolver().delete(
+                    getContentResolver().delete(
                             newsTitleOfFavNews,
                             null,
                             null);
@@ -164,28 +168,55 @@ public class DetailActivity extends AppCompatActivity {
 
 
     public void onShowBrowser(View view) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(newsUrl));
-                startActivity(browserIntent);
-            }
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(newsUrl));
+        startActivity(browserIntent);
+    }
 
-            @Override
-            public boolean onCreateOptionsMenu(Menu menu) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
 
-                getMenuInflater().inflate(R.menu.detail_menu, menu);
+        getMenuInflater().inflate(R.menu.detail_menu, menu);
 
-                return true;
-            }
+        return true;
+    }
 
     private Intent createShareNewsIntent() {
         Intent shareIntent = ShareCompat.IntentBuilder.from(this)
-         .setType("text/plain")
-         .setText(NEWS_SHARE_HASHTAG + "\n\n\n" + newsTitle
-          + "\n\n\n" + newsDescription
-          + "\n\n\n" + newsDate)
-          .getIntent();
+                .setType("text/plain")
+                .setText(NEWS_SHARE_HASHTAG + "\n\n\n" + newsTitle
+                        + "\n\n\n" + newsDescription
+                        + "\n\n\n" + newsDate)
+                .getIntent();
 
-          return shareIntent;
+        return shareIntent;
     }
 
+
+        @Override
+        protected void onRestoreInstanceState(Bundle savedInstanceState) {
+            super.onRestoreInstanceState(savedInstanceState);
+            mFavBtn.setChecked(savedInstanceState.getBoolean("ToggleButtonState",false));
+        }
+
+        @Override
+        protected void onSaveInstanceState(Bundle outState) {
+            super.onSaveInstanceState(outState);
+            outState.putBoolean("ToggleButtonState",mFavBtn.isChecked());
+        }
+
+
+    /*
+    @Override
+    protected void onPause() {
+        super.onPause();
+        bundle.putBoolean("ToggleButtonState", mFavBtn.isChecked());
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mFavBtn.setChecked(bundle.getBoolean("ToggleButtonState",false));
+    }
+    */
+}
 
