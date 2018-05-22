@@ -63,6 +63,9 @@ class NewsListRemoteVieFactory implements RemoteViewsService.RemoteViewsFactory{
 
         @Override
         public int getCount() {
+            if(newsArrayList == null){
+                return 0;
+            }
             return newsArrayList.size();
         }
 
