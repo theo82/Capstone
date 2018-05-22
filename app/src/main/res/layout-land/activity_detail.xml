@@ -142,13 +142,12 @@
                         android:textColor="@android:color/white" />
 
                     <ToggleButton
-                        android:id="@+id/addFavButton"
+                        android:id="@+id/fav_news_btn"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:background="@drawable/ic_star_border_black_24dp"
-                        android:text="ToggleButton" />
+                        android:background="@drawable/my_btn_toggle"/>
                 </RelativeLayout>
 
 
