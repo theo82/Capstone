@@ -48,8 +48,6 @@ public class DetailActivity extends AppCompatActivity {
 
     private static Bundle bundle = new Bundle();
 
-
-
     private Uri uri;
 
     @Override
@@ -180,6 +178,19 @@ public class DetailActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+        if(item.getItemId() == R.id.detail_comment_btn){
+            Intent commentIntent = new Intent(DetailActivity.this, CommentActivity.class);
+            commentIntent.putExtra("newsTitle",newsTitle);
+            startActivity(commentIntent);
+        }
+
+        return true;
+    }
+
     private Intent createShareNewsIntent() {
         Intent shareIntent = ShareCompat.IntentBuilder.from(this)
                 .setType("text/plain")
@@ -192,14 +203,14 @@ public class DetailActivity extends AppCompatActivity {
     }
 
 
-        @Override
-        protected void onRestoreInstanceState(Bundle savedInstanceState) {
-            super.onRestoreInstanceState(savedInstanceState);
-            mFavBtn.setChecked(savedInstanceState.getBoolean("ToggleButtonState",false));
-        }
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mFavBtn.setChecked(savedInstanceState.getBoolean("ToggleButtonState",false));
+    }
 
-        @Override
-        protected void onSaveInstanceState(Bundle outState) {
+    @Override
+     protected void onSaveInstanceState(Bundle outState) {
             super.onSaveInstanceState(outState);
             outState.putBoolean("ToggleButtonState",mFavBtn.isChecked());
         }

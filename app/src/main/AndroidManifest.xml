@@ -57,7 +57,10 @@
             android:authorities="theo.tziomakas.news"
             android:exported="false" />
 
-        <activity android:name=".FavouriteNewsActivity"
+        <activity
+            android:name=".FavouriteNewsActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".CommentActivity"
             android:parentActivityName=".MainActivity"></activity>
     </application>
 

@@ -32,7 +32,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private ProgressDialog mProgress;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,7 +102,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
-
                 if (task.isSuccessful()) {
                         mProgress.dismiss();
                         sendToMain();
@@ -121,7 +119,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void sendToMain() {
         Intent mainIntent = new Intent(LoginActivity.this,MainActivity.class);
-        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        //mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(mainIntent);
         finish();
     }

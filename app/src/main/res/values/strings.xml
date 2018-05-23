@@ -16,4 +16,5 @@
     <string name="title_activity_detail">DetailActivity</string>
     <string name="share">Share</string>
     <string name="browser">Browser</string>
+    <string name="submit_comment">Submit comment</string>
 </resources>
