@@ -5,9 +5,11 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,6 +22,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     Button forgotPassBtn;
     EditText emailEt;
     private Toolbar mToolbar;
+    private ProgressDialog mProgress;
 
 
     @Override
@@ -35,12 +38,28 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         forgotPassBtn = (Button)findViewById(R.id.send_email_btn);
         emailEt = (EditText)findViewById(R.id.email_forgot_et);
 
+
+        mProgress = new ProgressDialog(this);
+
+
         forgotPassBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String email = emailEt.getText().toString();
 
-                resetUserPassword(email);
+                if(TextUtils.isEmpty(email)){
+                    emailEt.setError("Required");
+                }
+
+                if(!TextUtils.isEmpty(email)){
+                    mProgress.setTitle("Verifying");
+                    mProgress.setMessage("Please wait to send instructions in your email.com");
+                    mProgress.setCanceledOnTouchOutside(false);
+                    mProgress.show();
+
+                    resetUserPassword(email);
+
+                }
             }
         });
 
@@ -48,20 +67,17 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
     public void resetUserPassword(String email){
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        final ProgressDialog progressDialog = new ProgressDialog(ForgotPasswordActivity.this);
-        progressDialog.setMessage("verifying..");
-        progressDialog.show();
 
         mAuth.sendPasswordResetEmail(email)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
-                            progressDialog.dismiss();
+                            mProgress.dismiss();
                             Toast.makeText(getApplicationContext(), "Reset password instructions has sent to your email",
                                     Toast.LENGTH_SHORT).show();
                         }else{
-                            progressDialog.dismiss();
+                            mProgress.dismiss();
                             Toast.makeText(getApplicationContext(),
                                     "Email don't exist", Toast.LENGTH_SHORT).show();
                         }
@@ -69,10 +85,13 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                progressDialog.dismiss();
+                mProgress.dismiss();
                 Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+
+
+
     }
 
 

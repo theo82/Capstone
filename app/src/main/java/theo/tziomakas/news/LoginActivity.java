@@ -60,12 +60,14 @@ public class LoginActivity extends AppCompatActivity {
                 String email = mLoginEmail.getText().toString();
                 String pass = mLoginPassword.getText().toString();
 
-                if (TextUtils.isEmpty(email)) {
+                if (TextUtils.isEmpty(mLoginEmail.getText().toString())) {
+                    mLoginEmail.setError("Required");
                     Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if (TextUtils.isEmpty(pass)) {
+                if (TextUtils.isEmpty(mLoginPassword.getText().toString())) {
+                    mLoginPassword.setError("Required");
                     Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -123,4 +125,5 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(mainIntent);
         finish();
     }
+
 }

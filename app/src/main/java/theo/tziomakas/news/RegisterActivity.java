@@ -58,25 +58,14 @@ public class RegisterActivity extends AppCompatActivity {
         mCreateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                validateForm();
+
                 String displayName = mDisplayName.getText().toString();
                 String email = mEmail.getText().toString();
                 String password = mPassword.getText().toString();
 
 
-                if (TextUtils.isEmpty(displayName)) {
-                    Toast.makeText(getApplicationContext(), "Enter displayname!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
                 if(!TextUtils.isEmpty(displayName) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(password)){
 
                     mProgress.setTitle("Registering User");
@@ -138,6 +127,32 @@ public class RegisterActivity extends AppCompatActivity {
         startActivity(mainIntent);
 
         finish();
+    }
+
+    private boolean validateForm() {
+        boolean result = true;
+        if (TextUtils.isEmpty(mDisplayName.getText().toString())) {
+            mDisplayName.setError("Required");
+            result = false;
+        } else {
+            mDisplayName.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mEmail.getText().toString())) {
+            mEmail.setError("Required");
+            result = false;
+        } else {
+            mEmail.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mPassword.getText().toString())) {
+            mPassword.setError("Required");
+            result = false;
+        } else {
+            mPassword.setError(null);
+        }
+
+        return result;
     }
 
 }
