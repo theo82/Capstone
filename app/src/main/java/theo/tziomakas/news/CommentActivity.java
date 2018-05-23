@@ -55,7 +55,10 @@ public class CommentActivity extends AppCompatActivity {
         bodyEt = (EditText) findViewById(R.id.comment_body);
         commentBtn = (Button) findViewById(R.id.comment_btn);
 
-         i = getIntent();
+        i = getIntent();
+
+        newsTitle = i.getStringExtra("newsTitle");
+
 
 
 
@@ -91,7 +94,6 @@ public class CommentActivity extends AppCompatActivity {
         // [START single_value_read]
         final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        newsTitle = i.getStringExtra("newTitle");
 
         mDatabase.child("Users").child(userId).addListenerForSingleValueEvent(
                 new ValueEventListener() {
@@ -109,7 +111,7 @@ public class CommentActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             // Write new post
-                            writeNewPost(userId, user.username,newsTitle, title, body);
+                            writeNewPost(userId,newsTitle, title, body);
                         }
 
                         // Finish this Activity, back to the stream
@@ -129,9 +131,9 @@ public class CommentActivity extends AppCompatActivity {
         // [END single_value_read]
     }
 
-   private void writeNewPost(String userId, String username,String newsTitle, String commentTitle, String commentBody){
+   private void writeNewPost(String userId, String newsTitle, String commentTitle, String commentBody){
        String key = mDatabase.child("comments").push().getKey();
-       Comment comment = new Comment(userId,username,newsTitle,commentTitle,commentBody);
+       Comment comment = new Comment(userId,newsTitle,commentTitle,commentBody);
        Map<String, Object> commentValues = comment.toMap();
 
        Map<String, Object> childUpdates = new HashMap<>();

@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.NavUtils;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -54,6 +55,7 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
@@ -127,7 +129,6 @@ public class DetailActivity extends AppCompatActivity {
                         protected Void doInBackground(Void... voids) {
                             ContentValues contentValues = new ContentValues();
 
-
                             contentValues.put(FavouriteContract.FavouriteEntry.COLUMN_NEWS_TITLE, newsTitle);
                             contentValues.put(FavouriteContract.FavouriteEntry.COLUMN_NEWS_AUTHOR, newsAuthor);
                             contentValues.put(FavouriteContract.FavouriteEntry.COLUMN_NEWS_DESCRIPTION, newsDescription);
@@ -149,7 +150,6 @@ public class DetailActivity extends AppCompatActivity {
                     }.execute();
                 } else {
 
-
                     Uri newsTitleOfFavNews = FavouriteContract.FavouriteEntry.buildNewsUriWithTitle(newsTitle);
                     //String title = uri.getPathSegments().get(1);// Get the task ID from the URI path
 
@@ -162,12 +162,6 @@ public class DetailActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-
-    public void onShowBrowser(View view) {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(newsUrl));
-        startActivity(browserIntent);
     }
 
     @Override
@@ -186,6 +180,12 @@ public class DetailActivity extends AppCompatActivity {
             Intent commentIntent = new Intent(DetailActivity.this, CommentActivity.class);
             commentIntent.putExtra("newsTitle",newsTitle);
             startActivity(commentIntent);
+        }else if(item.getItemId() == R.id.detail_browser_btn){
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(newsUrl));
+            startActivity(browserIntent);
+        }else if(item.getItemId() == android.R.id.home){
+            NavUtils.navigateUpFromSameTask(this);
+            return true;
         }
 
         return true;

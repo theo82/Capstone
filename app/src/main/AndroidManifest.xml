@@ -50,7 +50,8 @@
 
         <activity
             android:name=".DetailActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            />
 
         <provider
             android:name=".data.FavouriteProvider"
