@@ -17,4 +17,6 @@
     <string name="share">Share</string>
     <string name="browser">Browser</string>
     <string name="submit_comment">Submit comment</string>
+    <string name="comment_on_article">Comment on article</string>
+    <string name="display_comments">Display comments</string>
 </resources>

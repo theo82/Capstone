@@ -50,8 +50,7 @@
 
         <activity
             android:name=".DetailActivity"
-            android:parentActivityName=".MainActivity"
-            />
+            android:parentActivityName=".MainActivity" />
 
         <provider
             android:name=".data.FavouriteProvider"
@@ -61,8 +60,12 @@
         <activity
             android:name=".FavouriteNewsActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".CommentActivity"
-            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".CommentActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".DisplayComments"
+            android:parentActivityName=".MainActivity" />
+
     </application>
 
 </manifest>

@@ -180,10 +180,14 @@ public class DetailActivity extends AppCompatActivity {
             Intent commentIntent = new Intent(DetailActivity.this, CommentActivity.class);
             commentIntent.putExtra("newsTitle",newsTitle);
             startActivity(commentIntent);
-        }else if(item.getItemId() == R.id.detail_browser_btn){
+        }else if(item.getItemId() == R.id.detail_display_comment_btn){
+            Intent displayCommentsIntent = new Intent(DetailActivity.this,DisplayComments.class);
+            startActivity(displayCommentsIntent);
+        }
+        else if(item.getItemId() == R.id.detail_browser_btn){
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(newsUrl));
             startActivity(browserIntent);
-        }else if(item.getItemId() == android.R.id.home){
+        } if(item.getItemId() == android.R.id.home){
             NavUtils.navigateUpFromSameTask(this);
             return true;
         }
