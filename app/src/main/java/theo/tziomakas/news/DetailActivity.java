@@ -182,6 +182,7 @@ public class DetailActivity extends AppCompatActivity {
             startActivity(commentIntent);
         }else if(item.getItemId() == R.id.detail_display_comment_btn){
             Intent displayCommentsIntent = new Intent(DetailActivity.this,DisplayComments.class);
+            displayCommentsIntent.putExtra("newsTitle",newsTitle);
             startActivity(displayCommentsIntent);
         }
         else if(item.getItemId() == R.id.detail_browser_btn){
