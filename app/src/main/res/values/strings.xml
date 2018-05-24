@@ -19,4 +19,7 @@
     <string name="submit_comment">Submit comment</string>
     <string name="comment_on_article">Comment on article</string>
     <string name="display_comments">Display comments</string>
+    <string name="no_comments_posted">No comment posted</string>
+    <string name="hello_from_display_comments_fragment">Display comments</string>
+    <string name="comments_posted">Comments posted</string>
 </resources>

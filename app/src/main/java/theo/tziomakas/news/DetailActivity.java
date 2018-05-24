@@ -40,7 +40,7 @@ public class DetailActivity extends AppCompatActivity {
     private String newsImage;
     private String newsDate;
     private String newsDescription;
-    private static String NEWS_SHARE_HASHTAG = "#PopularMoviesApp";
+    private static String NEWS_SHARE_HASHTAG = "#EasyNewsApp";
     private String date1;
     private String date2;
     private String newsUrl;

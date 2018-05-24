@@ -4,11 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,8 +27,10 @@ public class DisplayComments extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private Intent i;
     private String newsTitle;
+    private TextView noCommentsTextView;
+    private TextView commentsTextView;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_comments);
 
@@ -38,6 +39,11 @@ public class DisplayComments extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Display Comments");
+
+        noCommentsTextView = (TextView)findViewById(R.id.noCommentsTextView);
+
+        commentsTextView = (TextView)findViewById(R.id.commentsTextView);
+
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -53,15 +59,17 @@ public class DisplayComments extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        Query query = mDatabase.child("comments").child("newsTitle").equalTo(newsTitle);
+        Query query = mDatabase.child("comments").orderByChild("newsTitle").equalTo(newsTitle);
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    Toast.makeText(DisplayComments.this,"There are comments posted",Toast.LENGTH_LONG).show();
+                    commentsTextView.setVisibility(View.VISIBLE);
+
                 }else{
-                    Toast.makeText(DisplayComments.this,"There are no comments posted",Toast.LENGTH_LONG).show();
+                    //Toast.makeText(DisplayComments.this,"There are no comments posted",Toast.LENGTH_LONG).show();
+                    noCommentsTextView.setVisibility(View.VISIBLE);
 
                 }
             }
