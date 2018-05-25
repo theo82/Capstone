@@ -6,10 +6,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Comment {
-    String userId;
-    String newsTitle;
-    String commentTitle;
-    String commentBody;
+    public String userId;
+    public String newsTitle;
+    public String commentTitle;
+    public String commentBody;
+
+    public Comment(){
+
+    }
 
     public Comment(String userId, String newsTitle, String commentTitle, String commentBody) {
         this.userId = userId;
