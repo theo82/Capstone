@@ -37,6 +37,7 @@ public class CommentActivity extends AppCompatActivity {
     Button commentBtn;
     String newsTitle;
     Intent i;
+    String commentAuthor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +112,8 @@ public class CommentActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             // Write new post
-                            writeNewPost(userId,newsTitle, title, body);
+                            commentAuthor = dataSnapshot.child("name").getValue().toString();
+                            writeNewPost(userId,commentAuthor,newsTitle, title, body);
                         }
 
                         // Finish this Activity, back to the stream
@@ -131,9 +133,9 @@ public class CommentActivity extends AppCompatActivity {
         // [END single_value_read]
     }
 
-   private void writeNewPost(String userId, String newsTitle, String commentTitle, String commentBody){
+   private void writeNewPost(String userId, String commentAuthor,String newsTitle, String commentTitle, String commentBody){
        String key = mDatabase.child("comments").push().getKey();
-       Comment comment = new Comment(userId,newsTitle,commentTitle,commentBody);
+       Comment comment = new Comment(userId, commentAuthor,newsTitle,commentTitle,commentBody);
        Map<String, Object> commentValues = comment.toMap();
 
        Map<String, Object> childUpdates = new HashMap<>();

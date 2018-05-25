@@ -149,7 +149,7 @@ public class FavouriteNewsFragment extends Fragment implements LoaderManager.Loa
             newsArrayList = new ArrayList<>();
 
             if (dataCursor != null && dataCursor.getCount() > 0) {
-                dataCursor.moveToFirst();
+                //dataCursor.moveToFirst();
                 while (dataCursor.moveToNext()) {
                      author = dataCursor.getString(0);
                      title = dataCursor.getString(1);

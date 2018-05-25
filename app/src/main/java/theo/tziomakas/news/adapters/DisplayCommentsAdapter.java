@@ -49,7 +49,7 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
 
          holder.mTitle.setText(comment.commentTitle);
          holder.mBody.setText(comment.commentBody);
-         //holder.mAuthor.setText(comment.c);
+         holder.mAuthor.setText(comment.commentAuthor);
 
 
     }
@@ -84,7 +84,7 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
 
             mTitle = itemView.findViewById(R.id.display_comment_title);
             mBody = itemView.findViewById(R.id.display_comment_body);
-            //mAuthor = itemView.findViewById(R.id.display_comment_author);
+            mAuthor = itemView.findViewById(R.id.display_comment_author);
 
 
         }
