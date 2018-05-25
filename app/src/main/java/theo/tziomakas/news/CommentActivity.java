@@ -18,6 +18,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -113,7 +115,12 @@ public class CommentActivity extends AppCompatActivity {
                         } else {
                             // Write new post
                             commentAuthor = dataSnapshot.child("name").getValue().toString();
-                            writeNewPost(userId,commentAuthor,newsTitle, title, body);
+
+                            Calendar c = Calendar.getInstance();
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd,MMMM,YYYY hh,mm,a");
+                            String strDate = sdf.format(c.getTime());
+
+                            writeNewPost(userId,strDate,commentAuthor,newsTitle, title, body);
                         }
 
                         // Finish this Activity, back to the stream
@@ -133,9 +140,9 @@ public class CommentActivity extends AppCompatActivity {
         // [END single_value_read]
     }
 
-   private void writeNewPost(String userId, String commentAuthor,String newsTitle, String commentTitle, String commentBody){
+   private void writeNewPost(String userId,String date,String commentAuthor, String newsTitle, String commentTitle, String commentBody){
        String key = mDatabase.child("comments").push().getKey();
-       Comment comment = new Comment(userId, commentAuthor,newsTitle,commentTitle,commentBody);
+       Comment comment = new Comment(userId, date, commentAuthor,newsTitle,commentTitle,commentBody);
        Map<String, Object> commentValues = comment.toMap();
 
        Map<String, Object> childUpdates = new HashMap<>();

@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class Comment {
     public String userId;
+    public String date;
     public String commentAuthor;
     public String newsTitle;
     public String commentTitle;
@@ -16,8 +17,9 @@ public class Comment {
 
     }
 
-    public Comment(String userId, String commentAuthor, String newsTitle, String commentTitle, String commentBody) {
+    public Comment(String userId, String date,String commentAuthor, String newsTitle, String commentTitle, String commentBody) {
         this.userId = userId;
+        this.date = date;
         this.commentAuthor = commentAuthor;
         this.newsTitle = newsTitle;
         this.commentTitle = commentTitle;
@@ -28,6 +30,7 @@ public class Comment {
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
         result.put("userId", userId);
+        result.put("date",date);
         result.put("commentAuthor", commentAuthor);
         result.put("newsTitle", newsTitle);
         result.put("commentTitle", commentTitle);
