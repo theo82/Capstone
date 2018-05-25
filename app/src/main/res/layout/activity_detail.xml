@@ -37,7 +37,17 @@
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:title="@string/app_name" />
+                >
+
+                <TextView
+                    android:id="@+id/detail_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recent News"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
+
+            </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
@@ -60,16 +70,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/detail_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:padding="12dp"
-                    android:text="Recent News"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold" />
+
 
                 <TextView
                     android:id="@+id/detail_author"
@@ -151,6 +152,8 @@
         android:layout_marginRight="@dimen/fab_margin"
         android:elevation="5dp"
         android:src="@drawable/ic_share"
+        app:backgroundTint="@android:color/white"
+
         app:layout_anchor="@+id/app_bar_layout"
         app:layout_anchorGravity="bottom|end"
         app:pressedTranslationZ="12dp" />

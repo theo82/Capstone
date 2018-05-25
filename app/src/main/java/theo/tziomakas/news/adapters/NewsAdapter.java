@@ -71,6 +71,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         Picasso.with(context)
                 .load(newsImage)
                 .placeholder(R.drawable.ic_broken_image)
+                .fit()
                 .into(holder.mImageView);
 
 

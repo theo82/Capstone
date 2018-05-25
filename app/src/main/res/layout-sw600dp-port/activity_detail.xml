@@ -46,7 +46,6 @@
                     android:text="Recent News"
                     android:textColor="@android:color/white"
                     android:textStyle="bold" />
-
             </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.CollapsingToolbarLayout>

@@ -62,7 +62,6 @@ public class DetailActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         Intent i = getIntent();
 
 
