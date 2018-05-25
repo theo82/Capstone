@@ -22,4 +22,6 @@
     <string name="no_comments_posted">No comment posted</string>
     <string name="hello_from_display_comments_fragment">Display comments</string>
     <string name="comments_posted">Comments posted</string>
+    <string name="title_of_comment">Title of comment</string>
+    <string name="body_of_comment">Body of comment</string>
 </resources>
