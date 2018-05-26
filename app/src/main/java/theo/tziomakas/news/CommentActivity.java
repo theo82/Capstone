@@ -118,7 +118,7 @@ public class CommentActivity extends AppCompatActivity {
                             name = dataSnapshot.child("name").getValue().toString();
 
                             Calendar c = Calendar.getInstance();
-                            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-YYYY hh:mm:ss");
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
                             String strDate = sdf.format(c.getTime());
 
                             writeNewPost(userId,strDate,name,newsTitle, title, body);
