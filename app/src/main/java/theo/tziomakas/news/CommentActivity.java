@@ -39,7 +39,7 @@ public class CommentActivity extends AppCompatActivity {
     Button commentBtn;
     String newsTitle;
     Intent i;
-    String commentAuthor;
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +105,7 @@ public class CommentActivity extends AppCompatActivity {
                         // Get user value
                         User user = dataSnapshot.getValue(User.class);
 
+
                         // [START_EXCLUDE]
                         if (user == null) {
                             // User is null, error out
@@ -114,13 +115,13 @@ public class CommentActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             // Write new post
-                            commentAuthor = dataSnapshot.child("name").getValue().toString();
+                            name = dataSnapshot.child("name").getValue().toString();
 
                             Calendar c = Calendar.getInstance();
-                            SimpleDateFormat sdf = new SimpleDateFormat("dd,MMMM,YYYY hh,mm,a");
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-YYYY hh:mm:ss");
                             String strDate = sdf.format(c.getTime());
 
-                            writeNewPost(userId,strDate,commentAuthor,newsTitle, title, body);
+                            writeNewPost(userId,strDate,name,newsTitle, title, body);
                         }
 
                         // Finish this Activity, back to the stream
@@ -160,4 +161,13 @@ public class CommentActivity extends AppCompatActivity {
             commentBtn.setVisibility(View.GONE);
         }
     }
+
+    /*
+    {
+      "rules": {
+        ".read": "auth != null",
+        ".write": "auth != null"
+      }
+    }
+     */
 }

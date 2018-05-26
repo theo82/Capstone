@@ -3,9 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/detail_comment_btn"
-        android:title="@string/comment_on_article" />
-    <item
         android:id="@+id/detail_display_comment_btn"
         android:title="@string/display_comments" />
     <item

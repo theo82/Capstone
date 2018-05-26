@@ -2,7 +2,7 @@ package theo.tziomakas.news.model;
 
 public class User {
 
-    public String username;
+    public String name;
     public String email;
 
 
@@ -10,17 +10,17 @@ public class User {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public User(String username, String email) {
-        this.username = username;
+    public User(String name, String email) {
+        this.name = name;
         this.email = email;
     }
 
     public String getUsername() {
-        return username;
+        return name;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.name = username;
     }
 
     public String getEmail() {

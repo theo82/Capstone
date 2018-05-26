@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,6 +47,7 @@ public class DetailActivity extends AppCompatActivity {
     private String newsUrl;
     private String newsAuthor;
     private Cursor favoriteCursor;
+    private ImageButton imageButton;
 
     private static Bundle bundle = new Bundle();
 
@@ -56,14 +58,12 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent i = getIntent();
-
 
         mAuthor = (TextView) findViewById(R.id.detail_author);
 
@@ -73,6 +73,7 @@ public class DetailActivity extends AppCompatActivity {
         mDescription = (TextView) findViewById(R.id.detail_description);
         mShareBtn = (FloatingActionButton) findViewById(R.id.share_floating_btn);
         mFavBtn = (ToggleButton) findViewById(R.id.fav_news_btn);
+        imageButton = (ImageButton)findViewById(R.id.detail_comment_image_btn);
 
         mFavBtn.setTextOn(null);
         mFavBtn.setText(null);
@@ -102,6 +103,14 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent shareIntent = createShareNewsIntent();
                 startActivity(shareIntent);
+            }
+        });
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent commentIntent = new Intent(DetailActivity.this, CommentActivity.class);
+                commentIntent.putExtra("newsTitle",newsTitle);
+                startActivity(commentIntent);
             }
         });
         favoriteCursor = getContentResolver().query(FavouriteContract.FavouriteEntry.CONTENT_URI,
@@ -173,13 +182,9 @@ public class DetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        super.onOptionsItemSelected(item);
+       super.onOptionsItemSelected(item);
 
-        if(item.getItemId() == R.id.detail_comment_btn){
-            Intent commentIntent = new Intent(DetailActivity.this, CommentActivity.class);
-            commentIntent.putExtra("newsTitle",newsTitle);
-            startActivity(commentIntent);
-        }else if(item.getItemId() == R.id.detail_display_comment_btn){
+       if(item.getItemId() == R.id.detail_display_comment_btn){
             Intent displayCommentsIntent = new Intent(DetailActivity.this,DisplayComments.class);
             displayCommentsIntent.putExtra("newsTitle",newsTitle);
             startActivity(displayCommentsIntent);
