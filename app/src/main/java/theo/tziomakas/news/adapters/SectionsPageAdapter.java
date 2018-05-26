@@ -9,7 +9,12 @@ import theo.tziomakas.news.fragments.NewsFragment;
 
 public class SectionsPageAdapter extends FragmentPagerAdapter {
 
-    NewsFragment fragment;
+
+    String[] sources = {"usa-today","bbc-news","al-jazeera-english","daily-mail","abc-news","business-insider","cnn","fox-news"};
+
+    public static final String BASE_URL = "https://newsapi.org/v2/top-headlines?sources=";
+
+    public static final String API_KEY = "&apiKey=98b995b151264acdb35e751ff6d22a3c";
 
     public SectionsPageAdapter(FragmentManager fm) {
         super(fm);
@@ -18,38 +23,7 @@ public class SectionsPageAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        switch (position){
-            case 0:
-                fragment = NewsFragment.newInstance("https://newsapi.org/v2/top-headlines?sources=usa-today&apiKey=98b995b151264acdb35e751ff6d22a3c");
-                return fragment;
-            case 1:
-               fragment = NewsFragment.newInstance("https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=98b995b151264acdb35e751ff6d22a3c");
-                return fragment;
-            case 2:
-                fragment = NewsFragment.newInstance("https://newsapi.org/v2/top-headlines?sources=al-jazeera-english&apiKey=98b995b151264acdb35e751ff6d22a3c");
-                return fragment;
-            case 3:
-                fragment = NewsFragment.newInstance("https://newsapi.org/v2/top-headlines?sources=daily-mail&apiKey=98b995b151264acdb35e751ff6d22a3c");
-                return fragment;
-            case 4:
-                fragment = NewsFragment.newInstance("https://newsapi.org/v2/top-headlines?sources=abc-news&apiKey=98b995b151264acdb35e751ff6d22a3c");
-                return fragment;
-            case 5:
-                fragment= NewsFragment.newInstance("https://newsapi.org/v2/top-headlines?sources=business-insider&apiKey=98b995b151264acdb35e751ff6d22a3c");
-                return fragment;
-            case 6:
-                fragment = NewsFragment.newInstance("https://newsapi.org/v2/top-headlines?sources=cnn&apiKey=98b995b151264acdb35e751ff6d22a3c");
-                return fragment;
-            case 7:
-                fragment = NewsFragment.newInstance("https://newsapi.org/v2/top-headlines?sources=fox-news&apiKey=98b995b151264acdb35e751ff6d22a3c");
-                return fragment;
-
-
-
-            default:
-                return null;
-        }
-
+        return NewsFragment.newInstance(BASE_URL + sources[position] + API_KEY);
     }
 
     @Override

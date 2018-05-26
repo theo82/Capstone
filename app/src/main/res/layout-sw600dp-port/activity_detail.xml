@@ -43,7 +43,7 @@
                     android:id="@+id/detail_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Recent News"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
                     android:textColor="@android:color/white"
                     android:textStyle="bold" />
             </android.support.v7.widget.Toolbar>

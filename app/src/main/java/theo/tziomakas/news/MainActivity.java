@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = (android.support.v7.widget.Toolbar)findViewById(R.id.main_page_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Easy News");
 
 
         mViewPager = (ViewPager)findViewById(R.id.main_TabPager);
