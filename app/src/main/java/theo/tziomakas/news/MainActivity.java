@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         mViewPager = (ViewPager)findViewById(R.id.main_TabPager);
-        mSectionsPagerAdapter = new SectionsPageAdapter(getSupportFragmentManager());
+        mSectionsPagerAdapter = new SectionsPageAdapter(getSupportFragmentManager(), this);
 
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setOffscreenPageLimit(1);

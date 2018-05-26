@@ -24,4 +24,12 @@
     <string name="comments_posted">Comments posted</string>
     <string name="title_of_comment">Title of comment</string>
     <string name="body_of_comment">Body of comment</string>
+    <string name="usa_today">USA Today</string>
+    <string name="bbc_news">BBC News</string>
+    <string name="aljazeera">AlJazeera</string>
+    <string name="daily_mail">Daily Mail</string>
+    <string name="abc_news">ABC News</string>
+    <string name="business_insider">Business Insider</string>
+    <string name="cnn">CNN</string>
+    <string name="fox_news">Fox News</string>
 </resources>
