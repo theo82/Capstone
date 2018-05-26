@@ -149,7 +149,7 @@ public class CommentActivity extends AppCompatActivity {
        childUpdates.put("/comments/" + key, commentValues);
 
        mDatabase.updateChildren(childUpdates);
-   }
+       }
 
     private void setEditingEnabled(boolean enabled) {
         titleEt.setEnabled(enabled);

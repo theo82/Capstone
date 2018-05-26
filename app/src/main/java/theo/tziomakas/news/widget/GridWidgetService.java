@@ -1,5 +1,6 @@
 package theo.tziomakas.news.widget;
 
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +15,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import theo.tziomakas.news.MainActivity;
 import theo.tziomakas.news.R;
 import theo.tziomakas.news.model.News;
 
@@ -83,6 +85,15 @@ class NewsListRemoteVieFactory implements RemoteViewsService.RemoteViewsFactory{
 
             Intent fillInIntent = new Intent();
             views.setOnClickFillInIntent(R.id.widget_grid_view_item, fillInIntent);
+
+
+            //PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, 0, fillInIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+            //views.setOnClickPendingIntent(R.id.widget_grid_view_item, pendingIntent);
+
+            Intent intent = new Intent(mContext, MainActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, intent, 0);
+            views.setOnClickPendingIntent(R.id.widget_grid_view_item, pendingIntent);
 
             return views;
         }
