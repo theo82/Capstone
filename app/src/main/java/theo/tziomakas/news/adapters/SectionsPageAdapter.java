@@ -17,7 +17,7 @@ public class SectionsPageAdapter extends FragmentPagerAdapter {
 
     String[] sources = {"usa-today","bbc-news","al-jazeera-english","daily-mail","abc-news","business-insider","cnn","fox-news"};
 
-    public static final String BASE_URL = "https://newsapi.org/v2/top-headlines?sources=";
+    public static final String BASE_URL = "http://newsapi.org/v2/top-headlines?sources=";
 
     public static final String API_KEY = "&apiKey=98b995b151264acdb35e751ff6d22a3c";
 
