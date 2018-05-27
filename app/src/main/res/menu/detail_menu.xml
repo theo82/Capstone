@@ -3,9 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/detail_display_comment_btn"
-        android:title="@string/display_comments" />
-    <item
         android:id="@+id/detail_browser_btn"
         android:title="View article in browser" />
 

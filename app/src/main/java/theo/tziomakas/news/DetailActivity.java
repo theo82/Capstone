@@ -10,7 +10,10 @@ import android.support.v4.app.NavUtils;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,13 +25,26 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
+import theo.tziomakas.news.adapters.DisplayCommentsAdapter;
+import theo.tziomakas.news.adapters.SimpleDividerItemDecoration;
 import theo.tziomakas.news.data.FavouriteContract;
+import theo.tziomakas.news.model.Comment;
 
 public class DetailActivity extends AppCompatActivity {
+
+    ArrayList<Comment> commentArrayList;
 
     ImageView mImageView;
     TextView mTitle;
@@ -36,7 +52,13 @@ public class DetailActivity extends AppCompatActivity {
     TextView mDescription;
     TextView mAuthor;
     ToggleButton mFavBtn;
+    private TextView noCommentsTextView;
+    private TextView commentsTextView;
+
+    private ImageButton imageButton;
+
     private FloatingActionButton mShareBtn;
+
     private String newsTitle;
     private String newsImage;
     private String newsDate;
@@ -46,12 +68,17 @@ public class DetailActivity extends AppCompatActivity {
     private String date2;
     private String newsUrl;
     private String newsAuthor;
+
     private Cursor favoriteCursor;
-    private ImageButton imageButton;
+
+    private DatabaseReference mDatabase;
 
     private static Bundle bundle = new Bundle();
 
     private Uri uri;
+
+    private RecyclerView mRecyclerView;
+    private DisplayCommentsAdapter displayCommentsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +98,24 @@ public class DetailActivity extends AppCompatActivity {
         mTitle = (TextView) findViewById(R.id.detail_title);
         mDate = (TextView) findViewById(R.id.detail_publish_date);
         mDescription = (TextView) findViewById(R.id.detail_description);
+        noCommentsTextView = (TextView)findViewById(R.id.noCommentsTextView);
+        commentsTextView = (TextView)findViewById(R.id.commentsTextView);
         mShareBtn = (FloatingActionButton) findViewById(R.id.share_floating_btn);
         mFavBtn = (ToggleButton) findViewById(R.id.fav_news_btn);
         imageButton = (ImageButton)findViewById(R.id.detail_comment_image_btn);
+
+        mRecyclerView = (RecyclerView)findViewById(R.id.recycler_comments);
+
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(manager);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(this));
+
+        commentArrayList = new ArrayList<>();
+
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
 
         mFavBtn.setTextOn(null);
         mFavBtn.setText(null);
@@ -81,12 +123,16 @@ public class DetailActivity extends AppCompatActivity {
 
         newsAuthor = i.getStringExtra("author");
         newsImage = i.getStringExtra("image");
-        newsTitle = i.getStringExtra("title");
+        newsTitle = i.getStringExtra("newsTitle");
         newsDate = i.getStringExtra("date");
         newsDescription = i.getStringExtra("description");
         newsUrl = i.getStringExtra("url");
-        date1 = newsDate.substring(0, 10);
-        date2 = newsDate.substring(11, 19);
+
+
+
+
+            date1 = newsDate.substring(0, 10);
+            date2 = newsDate.substring(11, 19);
 
         Picasso.with(this).load(newsImage)
                 .placeholder(R.drawable.ic_broken_image)
@@ -113,12 +159,20 @@ public class DetailActivity extends AppCompatActivity {
                 startActivity(commentIntent);
             }
         });
+
+        /**
+         * Handling the add/remove news part. We check if the specific news article
+         * exists in favourite.db.
+         */
         favoriteCursor = getContentResolver().query(FavouriteContract.FavouriteEntry.CONTENT_URI,
                 null,
                 FavouriteContract.FavouriteEntry.COLUMN_NEWS_TITLE + "=?",
                 new String[]{newsTitle},
                 null);
 
+        /**
+         * If yes then set the toggle button to true
+         */
         if (favoriteCursor.getCount() > 0) {
             try {
                 mFavBtn.setChecked(true);
@@ -126,11 +180,17 @@ public class DetailActivity extends AppCompatActivity {
                 favoriteCursor.close();
             }
         }
+
+        /**
+         * Else click the toggle button to add the news article as favourite
+         */
         mFavBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, final boolean isChecked) {
-
+                /**
+                 * If checked the add the news article as favourite.
+                 */
                 if (isChecked) {
                     new AsyncTask<Void, Void, Void>() {
                         @Override
@@ -157,7 +217,9 @@ public class DetailActivity extends AppCompatActivity {
                         }
                     }.execute();
                 } else {
-
+                    /**
+                     * If you uncheck the toggle button then delete the news article from the favourite db.
+                     */
                     Uri newsTitleOfFavNews = FavouriteContract.FavouriteEntry.buildNewsUriWithTitle(newsTitle);
                     //String title = uri.getPathSegments().get(1);// Get the task ID from the URI path
 
@@ -170,6 +232,10 @@ public class DetailActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+        queryFirebaseDb();
+
     }
 
     @Override
@@ -184,12 +250,7 @@ public class DetailActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
        super.onOptionsItemSelected(item);
 
-       if(item.getItemId() == R.id.detail_display_comment_btn){
-            Intent displayCommentsIntent = new Intent(DetailActivity.this,DisplayComments.class);
-            displayCommentsIntent.putExtra("newsTitle",newsTitle);
-            startActivity(displayCommentsIntent);
-        }
-        else if(item.getItemId() == R.id.detail_browser_btn){
+       if(item.getItemId() == R.id.detail_browser_btn){
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(newsUrl));
             startActivity(browserIntent);
         } if(item.getItemId() == android.R.id.home){
@@ -213,18 +274,66 @@ public class DetailActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        mFavBtn.setChecked(savedInstanceState.getBoolean("ToggleButtonState",false));
+    protected void onStart() {
+        super.onStart();
+        //queryFirebaseDb();
     }
 
     @Override
-     protected void onSaveInstanceState(Bundle outState) {
-            super.onSaveInstanceState(outState);
-            outState.putBoolean("ToggleButtonState",mFavBtn.isChecked());
-        }
+    protected void onRestart() {
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
+    }
 
 
+    public void queryFirebaseDb(){
+
+        /**
+         * Quering the database to check if the specific article has comments.
+         */
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        Query query = mDatabase.child("comments").orderByChild("newsTitle").equalTo(newsTitle);
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    for(DataSnapshot dataSnapshots : dataSnapshot.getChildren()){
+                        Comment comment = dataSnapshots.getValue(Comment.class);
+
+                        //mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
+
+                        commentArrayList.add(comment);
+
+                        displayCommentsAdapter = new DisplayCommentsAdapter(this,commentArrayList);
+
+                        mRecyclerView.setAdapter(displayCommentsAdapter);
+
+                        displayCommentsAdapter.setCommentsData(commentArrayList);
+
+                        //Log.d(LOG_TAG, String.valueOf(commentArrayList.size()));
+
+                    }
+                    noCommentsTextView.setVisibility(View.GONE);
+
+                    //commentsTextView.setVisibility(View.VISIBLE);
+
+                }else{
+                    //Toast.makeText(DisplayComments.this,"There are no comments posted",Toast.LENGTH_LONG).show();
+                    noCommentsTextView.setVisibility(View.VISIBLE);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
     /*
     @Override
     protected void onPause() {
@@ -238,5 +347,19 @@ public class DetailActivity extends AppCompatActivity {
         mFavBtn.setChecked(bundle.getBoolean("ToggleButtonState",false));
     }
     */
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mFavBtn.setChecked(savedInstanceState.getBoolean("ToggleButtonState",false));
+        savedInstanceState.putParcelableArrayList("newsList",commentArrayList);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("ToggleButtonState",mFavBtn.isChecked());
+        outState.getParcelableArrayList("newsList");
+
+    }
 }
 

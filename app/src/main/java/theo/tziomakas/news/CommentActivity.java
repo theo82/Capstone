@@ -162,12 +162,6 @@ public class CommentActivity extends AppCompatActivity {
         }
     }
 
-    /*
-    {
-      "rules": {
-        ".read": "auth != null",
-        ".write": "auth != null"
-      }
-    }
-     */
+
+
 }

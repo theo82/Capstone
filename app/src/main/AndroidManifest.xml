@@ -62,9 +62,7 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".CommentActivity"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".DisplayComments"
-            android:parentActivityName=".CommentActivity" />
+            android:parentActivityName=".DetailActivity" />
 
     </application>
 

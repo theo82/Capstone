@@ -206,7 +206,7 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
         Intent i = new Intent(getActivity(), DetailActivity.class);
         i.putExtra("author",newsArrayList.get(clickedItemIndex).getAuthor());
         i.putExtra("image",newsArrayList.get(clickedItemIndex).getUrlToImage());
-        i.putExtra("title",newsArrayList.get(clickedItemIndex).getTitle());
+        i.putExtra("newsTitle",newsArrayList.get(clickedItemIndex).getTitle());
         i.putExtra("description",newsArrayList.get(clickedItemIndex).getDescription());
         i.putExtra("url",newsArrayList.get(clickedItemIndex).getUrl());
         i.putExtra("date",newsArrayList.get(clickedItemIndex).getPublishedDate());
