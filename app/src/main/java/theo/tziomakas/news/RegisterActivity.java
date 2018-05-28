@@ -77,8 +77,6 @@ public class RegisterActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(RegisterActivity.this,"Fill of fields",Toast.LENGTH_LONG).show();
                 }
-
-
             }
 
          });
