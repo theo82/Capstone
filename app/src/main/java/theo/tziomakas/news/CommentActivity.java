@@ -49,7 +49,6 @@ public class CommentActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.comment_toolbar);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Add comment");
 
         mDatabase = FirebaseDatabase.getInstance().getReference();

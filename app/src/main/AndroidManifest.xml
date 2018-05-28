@@ -61,8 +61,7 @@
             android:name=".FavouriteNewsActivity"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".CommentActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name=".CommentActivity" />
 
     </application>
 

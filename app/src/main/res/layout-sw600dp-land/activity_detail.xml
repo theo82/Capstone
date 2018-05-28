@@ -42,6 +42,7 @@
                 <TextView
                     android:id="@+id/detail_title"
                     android:layout_width="wrap_content"
+                    android:textSize="18sp"
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/white"
                     android:textStyle="bold" />
@@ -70,7 +71,6 @@
                 android:orientation="vertical">
 
 
-
                 <TextView
                     android:id="@+id/detail_author"
                     android:layout_width="wrap_content"
@@ -80,6 +80,7 @@
                     android:text="Recent News"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="@android:color/black"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -89,9 +90,8 @@
                     android:layout_marginTop="12dp"
                     android:padding="12dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
-
 
 
                 <LinearLayout
@@ -112,7 +112,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="TextView"
+                        android:textSize="18sp" />
 
 
                 </LinearLayout>
@@ -137,19 +138,18 @@
                         android:layout_height="48dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:background="@drawable/my_btn_toggle"
-                         />
+                        android:background="@drawable/my_btn_toggle" />
                 </RelativeLayout>
 
                 <TextView
-                android:background="@color/colorPrimaryDark"
-                android:textColor="@android:color/white"
-                android:gravity="center_horizontal"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:text="Comments"
-                android:id="@+id/comments_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                    android:id="@+id/comments_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimaryDark"
+                    android:gravity="center_horizontal"
+                    android:text="Comments"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@android:color/white" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recycler_comments"
@@ -163,21 +163,21 @@
                     android:id="@+id/noCommentsTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
-
                     android:layout_centerInParent="true"
+
                     android:gravity="center_horizontal"
                     android:text="@string/no_comments_posted"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/commentsTextView"
                     android:layout_width="match_parent"
-                    android:gravity="center_horizontal"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
+                    android:gravity="center_horizontal"
                     android:text="@string/comments_posted"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:visibility="gone" />
 
             </LinearLayout>
 

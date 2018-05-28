@@ -131,6 +131,7 @@ public class DetailActivity extends AppCompatActivity {
             date1 = newsDate.substring(0, 10);
             date2 = newsDate.substring(11, 19);
 
+
         Picasso.with(this).load(newsImage)
                 .placeholder(R.drawable.ic_broken_image)
                 .into(mImageView);
