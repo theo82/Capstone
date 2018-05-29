@@ -123,6 +123,7 @@ public class DetailActivity extends AppCompatActivity {
 
         newsAuthor = i.getStringExtra("author");
         newsImage = i.getStringExtra("image");
+
         newsTitle = i.getStringExtra("newsTitle");
         newsDate = i.getStringExtra("date");
         newsDescription = i.getStringExtra("description");
@@ -130,10 +131,11 @@ public class DetailActivity extends AppCompatActivity {
 
         if(newsDate.isEmpty()){
             return;
-        }
+        }else {
+
             date1 = newsDate.substring(0, 10);
             date2 = newsDate.substring(11, 19);
-
+        }
 
         Picasso.with(this).load(newsImage)
                 .placeholder(R.drawable.ic_broken_image)

@@ -75,16 +75,15 @@ class NewsListRemoteVieFactory implements RemoteViewsService.RemoteViewsFactory{
         public RemoteViews getViewAt(int position) {
             RemoteViews views = new RemoteViews(mContext.getPackageName(), R.layout.widget_grid_view_item);
 
-            views.setTextViewText(R.id.widget_grid_view_item, "\u2022 " + newsArrayList.get(position).getTitle()
-                    + "\n" + String.valueOf(newsArrayList.get(position).getDescription()));
+            views.setTextViewText(R.id.widget_grid_view_item,
+                    "\u2022 " + newsArrayList.get(position).getTitle());
 
 
 
             Bundle selectedNewsBundle = new Bundle();
             selectedNewsBundle.putParcelableArrayList("news",newsArrayList);
 
-            Intent fillInIntent = new Intent();
-            views.setOnClickFillInIntent(R.id.widget_grid_view_item, fillInIntent);
+
 
 
             //PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, 0, fillInIntent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -98,9 +97,7 @@ class NewsListRemoteVieFactory implements RemoteViewsService.RemoteViewsFactory{
             i.putExtra("description",newsArrayList.get(position).getDescription());
             i.putExtra("url",newsArrayList.get(position).getUrl());
             i.putExtra("date",newsArrayList.get(position).getPublishedDate());
-
-            PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, i, 0);
-            views.setOnClickPendingIntent(R.id.widget_grid_view_item, pendingIntent);
+            views.setOnClickFillInIntent(R.id.widget_grid_view_item, i);
 
             return views;
         }
