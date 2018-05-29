@@ -15,6 +15,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import theo.tziomakas.news.DetailActivity;
 import theo.tziomakas.news.MainActivity;
 import theo.tziomakas.news.R;
 import theo.tziomakas.news.model.News;
@@ -27,22 +28,21 @@ public class GridWidgetService extends RemoteViewsService {
 }
 
 class NewsListRemoteVieFactory implements RemoteViewsService.RemoteViewsFactory{
+    public  static ArrayList<News> newsArrayList = new ArrayList<>();
+    Context mContext;
+    private String json;
 
-        public  static ArrayList<News> newsArrayList = new ArrayList<>();
-        Context mContext;
-
-        public NewsListRemoteVieFactory(Context applicationContext) {
+    public NewsListRemoteVieFactory(Context applicationContext) {
 
             this.mContext = applicationContext;
 
         }
 
-
         private void readNews(){
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext.getApplicationContext());
             Gson gson = new Gson();
 
-            String json = prefs.getString("news", "");
+            json = prefs.getString("news", "");
             Type type = new TypeToken<ArrayList<News>>(){}.getType();
             newsArrayList = gson.fromJson(json, type);
         }
@@ -91,7 +91,8 @@ class NewsListRemoteVieFactory implements RemoteViewsService.RemoteViewsFactory{
 
             //views.setOnClickPendingIntent(R.id.widget_grid_view_item, pendingIntent);
 
-            Intent intent = new Intent(mContext, MainActivity.class);
+            Intent intent = new Intent(mContext, DetailActivity.class);
+            intent.putExtra("newsTitle",newsArrayList.get(position).getTitle());
             PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, intent, 0);
             views.setOnClickPendingIntent(R.id.widget_grid_view_item, pendingIntent);
 

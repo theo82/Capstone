@@ -26,7 +26,6 @@ public class StartActivity extends AppCompatActivity {
             }
 
         });
-
         mLoginBtn = (Button)findViewById(R.id.start_login_button);
 
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +45,8 @@ public class StartActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
+
+
 
 
 }

@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -25,6 +27,7 @@ import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
     private static final String TAG = RegisterActivity.class.getSimpleName();
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 1;
     private TextInputEditText mDisplayName;
     private TextInputEditText mEmail;
     private TextInputEditText mPassword;
@@ -73,7 +76,9 @@ public class RegisterActivity extends AppCompatActivity {
                     mProgress.setCanceledOnTouchOutside(false);
                     mProgress.show();
 
-                    registerUser(displayName,email,password);
+                    if(checkPlayServices()) {
+                        registerUser(displayName, email, password);
+                    }
                 }else{
                     Toast.makeText(RegisterActivity.this,"Fill of fields",Toast.LENGTH_LONG).show();
                 }
@@ -83,6 +88,12 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    /**
+     *
+     * @param displayName
+     * @param email
+     * @param password
+     */
     private void registerUser(final String displayName, String email, String password){
             mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
@@ -115,6 +126,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * A method that takes you to the main intent.
+     */
     private void sendToMain() {
         Intent mainIntent = new Intent(RegisterActivity.this,MainActivity.class);
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -124,6 +138,9 @@ public class RegisterActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Validating the form. We don't want the field to be empty.
+     */
     private boolean validateForm() {
         boolean result = true;
         if (TextUtils.isEmpty(mDisplayName.getText().toString())) {
@@ -148,6 +165,25 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         return result;
+    }
+
+    /**
+     * Checking if the phone has google play services installed.
+     */
+    private boolean checkPlayServices() {
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (apiAvailability.isUserResolvableError(resultCode)) {
+                apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
+                        .show();
+            } else {
+                Log.i(TAG, "This device is not supported.");
+                finish();
+            }
+            return false;
+        }
+        return true;
     }
 
 }

@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -59,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         if(currentUser == null){
             sendToStart();
         }
-
     }
 
     @Override

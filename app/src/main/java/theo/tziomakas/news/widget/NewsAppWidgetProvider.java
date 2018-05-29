@@ -16,13 +16,14 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import theo.tziomakas.news.DetailActivity;
 import theo.tziomakas.news.MainActivity;
 import theo.tziomakas.news.R;
 import theo.tziomakas.news.model.News;
 
 public class NewsAppWidgetProvider extends AppWidgetProvider {
 
-    static ArrayList<News> newsArrayList = new ArrayList<>();
+    public static ArrayList<News> newsArrayList = new ArrayList<>();
 
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
@@ -37,7 +38,7 @@ public class NewsAppWidgetProvider extends AppWidgetProvider {
         Intent intent = new Intent(context, GridWidgetService.class);
         views.setRemoteAdapter(R.id.widget_grid_view, intent);
 
-        Intent templateIntent = new Intent(context, MainActivity.class);
+        Intent templateIntent = new Intent(context, DetailActivity.class);
         templateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
         PendingIntent templatePendingIntent = PendingIntent.getActivity(
                 context, 0, templateIntent, 0);

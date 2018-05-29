@@ -128,6 +128,9 @@ public class DetailActivity extends AppCompatActivity {
         newsDescription = i.getStringExtra("description");
         newsUrl = i.getStringExtra("url");
 
+        if(newsDate.isEmpty()){
+            return;
+        }
             date1 = newsDate.substring(0, 10);
             date2 = newsDate.substring(11, 19);
 
@@ -157,6 +160,7 @@ public class DetailActivity extends AppCompatActivity {
                 startActivity(commentIntent);
             }
         });
+
 
         /**
          * Handling the add/remove news part. We check if the specific news article
