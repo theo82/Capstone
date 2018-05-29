@@ -23,7 +23,7 @@ import theo.tziomakas.news.model.News;
 
 public class NewsAppWidgetProvider extends AppWidgetProvider {
 
-    public static ArrayList<News> newsArrayList = new ArrayList<>();
+    static ArrayList<News> newsArrayList = new ArrayList<>();
 
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
@@ -38,7 +38,7 @@ public class NewsAppWidgetProvider extends AppWidgetProvider {
         Intent intent = new Intent(context, GridWidgetService.class);
         views.setRemoteAdapter(R.id.widget_grid_view, intent);
 
-        Intent templateIntent = new Intent(context, DetailActivity.class);
+        Intent templateIntent = new Intent(context, MainActivity.class);
         templateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
         PendingIntent templatePendingIntent = PendingIntent.getActivity(
                 context, 0, templateIntent, 0);
