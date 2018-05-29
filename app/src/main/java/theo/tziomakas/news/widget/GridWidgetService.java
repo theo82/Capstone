@@ -91,9 +91,15 @@ class NewsListRemoteVieFactory implements RemoteViewsService.RemoteViewsFactory{
 
             //views.setOnClickPendingIntent(R.id.widget_grid_view_item, pendingIntent);
 
-            Intent intent = new Intent(mContext, DetailActivity.class);
-            intent.putExtra("newsTitle",newsArrayList.get(position).getTitle());
-            PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, intent, 0);
+            Intent i = new Intent(mContext, DetailActivity.class);
+            i.putExtra("author",newsArrayList.get(position).getAuthor());
+            i.putExtra("image",newsArrayList.get(position).getUrlToImage());
+            i.putExtra("newsTitle",newsArrayList.get(position).getTitle());
+            i.putExtra("description",newsArrayList.get(position).getDescription());
+            i.putExtra("url",newsArrayList.get(position).getUrl());
+            i.putExtra("date",newsArrayList.get(position).getPublishedDate());
+
+            PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, i, 0);
             views.setOnClickPendingIntent(R.id.widget_grid_view_item, pendingIntent);
 
             return views;
