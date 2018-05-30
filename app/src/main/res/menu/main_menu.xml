@@ -4,9 +4,11 @@
 
     <item
         android:id="@+id/main_logout_btn"
-        android:title="Log out" />
+        android:title="@string/logout" />
+
     <item
         android:id="@+id/fav_news_btn"
-        android:title="Favorite News" />
+        android:title="@string/favourite_news" />
+
 
 </menu>
