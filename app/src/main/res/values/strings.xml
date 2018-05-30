@@ -32,4 +32,8 @@
     <string name="business_insider">Business Insider</string>
     <string name="cnn">CNN</string>
     <string name="fox_news">Fox News</string>
+    <string name="news_description">News Description</string>
+    <string name="comment_detail">Comment Detail</string>
+    <string name="favourite_toggle_btn">Favourite Toggle Button</string>
+    <string name="detail_activity_image">Detail Activity Image</string>
 </resources>

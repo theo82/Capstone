@@ -28,6 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
                 android:scaleType="centerCrop"
+                android:contentDescription="@string/detail_activity_image"
                 android:src="@drawable/ic_broken_image"
                 app:layout_collapseMode="parallax" />
 
@@ -44,8 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/white"
-                    android:textStyle="bold"
-                    android:textSize="18sp"/>
+                    android:textStyle="bold" />
 
             </android.support.v7.widget.Toolbar>
 
@@ -90,7 +90,7 @@
                     android:layout_marginTop="12dp"
                     android:padding="12dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
 
@@ -113,8 +113,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1"
-                        android:textSize="18sp"
-
                         android:text="TextView" />
 
 
@@ -131,6 +129,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
+                        android:contentDescription="@string/comment_detail"
                         android:backgroundTint="@android:color/white"
                         android:src="@drawable/ic_insert_comment" />
 
@@ -138,6 +137,7 @@
                         android:id="@+id/fav_news_btn"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
+                        android:contentDescription="@string/favourite_toggle_btn"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:background="@drawable/my_btn_toggle"
@@ -166,8 +166,9 @@
                     android:id="@+id/noCommentsTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
                     android:layout_centerInParent="true"
+                    android:visibility="gone"
+
                     android:gravity="center_horizontal"
                     android:text="@string/no_comments_posted"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title" />
@@ -178,7 +179,7 @@
                     android:gravity="center_horizontal"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
-                    android:text="@string/comments_posted"
+                    android:text= "@string/comments_posted"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
             </LinearLayout>
@@ -197,7 +198,6 @@
         android:elevation="5dp"
         android:src="@drawable/ic_share"
         app:backgroundTint="@android:color/white"
-
         app:layout_anchor="@+id/app_bar_layout"
         app:layout_anchorGravity="bottom|end"
         app:pressedTranslationZ="12dp" />

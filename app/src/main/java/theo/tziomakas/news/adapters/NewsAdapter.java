@@ -64,7 +64,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         String newsImage = news.getUrlToImage();
         String newsTitle = news.getTitle();
         String newsAuthor = news.getAuthor();
-        String newsDate = news.getPublishedDate();
+        //String newsDate = news.getPublishedDate();
 
         //String date1 = newsDate.substring(0,10);
        // String date2 = newsDate.substring(11,19);
@@ -108,7 +108,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         ImageView mImageView;
         TextView mTitle;
         TextView mAuthor;
-        TextView mDate;
+        //TextView mDate;
 
         public NewsViewHolder(View itemView) {
             super(itemView);
@@ -117,7 +117,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
             mImageView = itemView.findViewById(R.id.news_image);
             mTitle = itemView.findViewById(R.id.news_title);
             mAuthor = itemView.findViewById(R.id.news_author);
-            mDate = itemView.findViewById(R.id.news_date);
+            //mDate = itemView.findViewById(R.id.news_date);
         }
 
         @Override

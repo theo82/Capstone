@@ -76,7 +76,8 @@ class NewsListRemoteVieFactory implements RemoteViewsService.RemoteViewsFactory{
             RemoteViews views = new RemoteViews(mContext.getPackageName(), R.layout.widget_grid_view_item);
 
             views.setTextViewText(R.id.widget_grid_view_item,
-                    "\u2022 " + newsArrayList.get(position).getTitle());
+                    "\u2022 " + newsArrayList.get(position).getTitle()
+            + "\n" + newsArrayList.get(position).getDescription());
 
 
 

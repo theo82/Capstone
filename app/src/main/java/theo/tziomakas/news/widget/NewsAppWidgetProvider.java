@@ -25,7 +25,6 @@ public class NewsAppWidgetProvider extends AppWidgetProvider {
 
     static ArrayList<News> newsArrayList = new ArrayList<>();
 
-
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
