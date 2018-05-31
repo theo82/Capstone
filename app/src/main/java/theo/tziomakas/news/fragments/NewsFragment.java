@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -41,12 +42,15 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
     private String newsUrl;
 
     private RecyclerView mRecyclerView;
+    private SwipeRefreshLayout swipeRefreshLayout;
+
     private NewsAdapter adapter;
     private TextView errorTextView;
 
     private static final String ARRAY_LIST = "list_view";
     private ArrayList<News> newsArrayList;
     private static final String LAYOUT_STATE = "USATodayFragment.recycler.layout";
+
 
     String newsTitlesToJson;
     public NewsFragment() {
@@ -84,6 +88,7 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
 
 
             readBundle(getArguments());
+
 
             mRecyclerView = v.findViewById(R.id.news_recycler_view);
             errorTextView = v.findViewById(R.id.errorTextView);
@@ -213,4 +218,7 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
         Log.v(LOG_TAG,newsArrayList.get(clickedItemIndex).getTitle());
         startActivity(i);
     }
+
+
+
 }

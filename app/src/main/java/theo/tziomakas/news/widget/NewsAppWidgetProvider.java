@@ -24,15 +24,27 @@ import theo.tziomakas.news.model.News;
 public class NewsAppWidgetProvider extends AppWidgetProvider {
 
     static ArrayList<News> newsArrayList = new ArrayList<>();
+    private static String json;
+    private static Type type;
+    private static SharedPreferences prefs;
+    private static Gson gson;
+
+
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_grid_view);
 
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, NewsAppWidgetProvider.class));
+
+        prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        gson = new Gson();
+        json = prefs.getString("news", "");
+        type = new TypeToken<ArrayList<News>>(){}.getType();
+        newsArrayList = gson.fromJson(json, type);
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_grid_view);
         // Construct the RemoteViews object
-
-
         // Set the GridWidgetService intent to act as the adapter for the GridView
         Intent intent = new Intent(context, GridWidgetService.class);
         views.setRemoteAdapter(R.id.widget_grid_view, intent);
@@ -45,7 +57,9 @@ public class NewsAppWidgetProvider extends AppWidgetProvider {
         views.setPendingIntentTemplate(R.id.widget_grid_view,
                 templatePendingIntent);
         // Instruct the widget manager to update the widget
+
         appWidgetManager.updateAppWidget(appWidgetId, views);
+
     }
 
     @Override
@@ -53,6 +67,8 @@ public class NewsAppWidgetProvider extends AppWidgetProvider {
         // There may be multiple widgets active, so update all of them
         for (int appWidgetId : appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId);
+
+
         }
     }
 
@@ -80,14 +96,6 @@ public class NewsAppWidgetProvider extends AppWidgetProvider {
         final String action = intent.getAction();
 
         if (action.equals("android.appwidget.action.APPWIDGET_UPDATE2")) {
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-            Gson gson = new Gson();
-
-            String json = prefs.getString("news", "");
-            Type type = new TypeToken<ArrayList<News>>(){}.getType();
-            newsArrayList = gson.fromJson(json, type);
-            appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_grid_view);
-            //Now update all widgets
             NewsAppWidgetProvider.updateRecipeWidgets(context,appWidgetManager,appWidgetIds);
             super.onReceive(context,intent);
         }

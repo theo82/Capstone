@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".fragments.NewsFragment">
 
+
+
     <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/news_recycler_view"
@@ -27,4 +29,5 @@
         android:text="@string/error_message"
         android:visibility="gone"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+
 </RelativeLayout>
