@@ -13,6 +13,7 @@ public class GenericLoader extends AsyncTaskLoader<List<News>> {
     private static final String LOG_TAG = GenericLoader.class.getName();
 
     String url;
+    public List<News> result;
 
     public GenericLoader(Context context, String url) {
         super(context);
@@ -32,7 +33,7 @@ public class GenericLoader extends AsyncTaskLoader<List<News>> {
             return null;
         }
 
-        List<News> result = NetworkUtils.fetchNewsData(url);
+        result = NetworkUtils.fetchNewsData(url);
         return result;
     }
 }

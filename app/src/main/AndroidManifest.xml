@@ -61,6 +61,12 @@
             android:name=".FavouriteNewsActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".CommentActivity" />
+
+        <service android:name="service.NewsService"
+            android:exported="false"
+            />
+
+
     </application>
 
 </manifest>

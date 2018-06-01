@@ -24,6 +24,7 @@
     <string name="comments_posted">Comments posted</string>
     <string name="title_of_comment">Title of comment</string>
     <string name="body_of_comment">Body of comment</string>
+
     <string name="usa_today">USA Today</string>
     <string name="bbc_news">BBC News</string>
     <string name="aljazeera">AlJazeera</string>
@@ -32,6 +33,10 @@
     <string name="business_insider">Business Insider</string>
     <string name="cnn">CNN</string>
     <string name="fox_news">Fox News</string>
+    <string name="independent">Independent</string>
+    <string name="google_news">google-news</string>
+
+
     <string name="news_description">News Description</string>
     <string name="comment_detail">Comment Detail</string>
     <string name="favourite_toggle_btn">Favourite Toggle Button</string>
@@ -39,4 +44,8 @@
     <string name="logout">Log Out</string>
     <string name="view_all_comments">View all comments</string>
     <string name="favourite_news">Favorite News</string>
+    <string name="the_new_york_times">The New York Times</string>
+    <string name="the_huffington_post">The Huffington Post</string>
+    <string name="national_geographic">National Geographic</string>
+    <string name="the_wall_street_journal">The Wall Street Journal</string>
 </resources>
