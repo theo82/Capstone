@@ -1,6 +1,5 @@
 package theo.tziomakas.news.fragments;
 
-import android.app.IntentService;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -21,11 +20,8 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 
-import service.NewsService;
 import theo.tziomakas.news.DetailActivity;
 import theo.tziomakas.news.R;
 import theo.tziomakas.news.adapters.NewsAdapter;
@@ -203,8 +199,6 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
                         .edit().putString("news", newsTitlesToJson)
                         .commit();
 
-
-                getActivity().startService(new Intent(getActivity(), NewsService.class));
 
 
                 /**
