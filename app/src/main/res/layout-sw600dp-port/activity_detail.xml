@@ -105,7 +105,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
-                        android:src="@drawable/ic_clock" />
+                        android:src="@drawable/ic_clock"
+                        android:contentDescription="TODO" />
 
                     <TextView
                         android:id="@+id/detail_publish_date"

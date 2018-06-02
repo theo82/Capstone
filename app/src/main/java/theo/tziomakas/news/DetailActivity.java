@@ -235,7 +235,7 @@ public class DetailActivity extends AppCompatActivity {
                             newsTitleOfFavNews,
                             null,
                             null);
-                    Toast.makeText(DetailActivity.this, "News article deleted from favourites ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailActivity.this, getResources().getString(R.string.article_deleted), Toast.LENGTH_SHORT).show();
 
                 }
             }
