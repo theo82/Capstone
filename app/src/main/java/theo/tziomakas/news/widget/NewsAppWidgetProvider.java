@@ -54,7 +54,7 @@ public class NewsAppWidgetProvider extends AppWidgetProvider {
         // There may be multiple widgets active, so update all of them
         for (int appWidgetId : appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId);
-            appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, android.R.id.list);
+            appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_grid_view);
         }
     }
 

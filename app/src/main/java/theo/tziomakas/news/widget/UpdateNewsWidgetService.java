@@ -53,7 +53,7 @@ public class UpdateNewsWidgetService extends IntentService {
     private void handleActionUpdateNewsWidget(ArrayList<News> newsArrayList){
 
         AppWidgetManager widgetManager = AppWidgetManager.getInstance(getApplicationContext());
-        int[] ids = widgetManager.getAppWidgetIds(new ComponentName(getApplicationContext(), DetailActivity.class));
+        int[] ids = widgetManager.getAppWidgetIds(new ComponentName(getApplicationContext(), NewsAppWidgetProvider.class));
 
         widgetManager.notifyAppWidgetViewDataChanged(ids, android.R.id.list);
 
