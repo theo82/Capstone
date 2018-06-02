@@ -24,8 +24,6 @@ import theo.tziomakas.news.model.News;
 
 public class NewsAppWidgetProvider extends AppWidgetProvider {
 
-
-
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                int appWidgetId) {
 
