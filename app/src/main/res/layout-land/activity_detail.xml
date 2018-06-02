@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:padding="12dp"
-                    android:text="Recent News"
+                    android:text="@string/recent_news"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="@android:color/black"
                     android:textStyle="bold" />
@@ -113,7 +113,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                         />
 
 
                 </LinearLayout>
@@ -149,7 +149,7 @@
                 android:textColor="@android:color/white"
                 android:gravity="center_horizontal"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:text="Comments"
+                android:text="@string/commments"
                 android:id="@+id/comments_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

@@ -48,4 +48,19 @@
     <string name="the_huffington_post">The Huffington Post</string>
     <string name="national_geographic">National Geographic</string>
     <string name="the_wall_street_journal">The Wall Street Journal</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="hint_email">email</string>
+    <string name="hint_password">Password</string>
+    <string name="login_to_your_account">Login to your account</string>
+    <string name="view_article_in_browser">View article in browser</string>
+    <string name="hint_username">Username</string>
+    <string name="display_name">Display name</string>
+    <string name="recent_news">Recent news</string>
+    <string name="commments">Comments</string>
+    <string name="share_content">Share content</string>
+    <string name="registering_user">Registering user</string>
+    <string name="waiting_for_registration">\"Please wait while we create your account\"</string>
+    <string name="fill_all_fields">Fill all fields</string>
+    <string name="device_not_supported">device not supported</string>
+    <string name="required">Required</string>
 </resources>

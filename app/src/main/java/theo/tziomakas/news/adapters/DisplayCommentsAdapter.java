@@ -49,7 +49,7 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
 
          holder.mTitle.setText(comment.commentTitle);
          holder.mBody.setText(comment.commentBody);
-         holder.mAuthor.setText("Posted by: " + comment.commentAuthor);
+         holder.mAuthor.setText(comment.commentAuthor);
          holder.mDate.setText(comment.date);
 
 

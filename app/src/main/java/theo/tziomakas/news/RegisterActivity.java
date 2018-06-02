@@ -46,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         mToolbar = (Toolbar)findViewById(R.id.register_toolbar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Create Account");
+        getSupportActionBar().setTitle(getResources().getString(R.string.create_new_account));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mProgress = new ProgressDialog(this);
@@ -71,8 +71,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if(!TextUtils.isEmpty(displayName) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(password)){
 
-                    mProgress.setTitle("Registering User");
-                    mProgress.setMessage("Please wait while we create your account");
+                    mProgress.setTitle(getResources().getString(R.string.registering_user));
+                    mProgress.setMessage(getResources().getString(R.string.waiting_for_registration));
                     mProgress.setCanceledOnTouchOutside(false);
                     mProgress.show();
 
@@ -80,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
                         registerUser(displayName, email, password);
                     }
                 }else{
-                    Toast.makeText(RegisterActivity.this,"Fill of fields",Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this,getResources().getString(R.string.fill_all_fields),Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -144,21 +144,21 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean validateForm() {
         boolean result = true;
         if (TextUtils.isEmpty(mDisplayName.getText().toString())) {
-            mDisplayName.setError("Required");
+            mDisplayName.setError(getResources().getString(R.string.required));
             result = false;
         } else {
             mDisplayName.setError(null);
         }
 
         if (TextUtils.isEmpty(mEmail.getText().toString())) {
-            mEmail.setError("Required");
+            mEmail.setError(getResources().getString(R.string.required));
             result = false;
         } else {
             mEmail.setError(null);
         }
 
         if (TextUtils.isEmpty(mPassword.getText().toString())) {
-            mPassword.setError("Required");
+            mPassword.setError(getResources().getString(R.string.required));
             result = false;
         } else {
             mPassword.setError(null);
@@ -178,7 +178,7 @@ public class RegisterActivity extends AppCompatActivity {
                 apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
                         .show();
             } else {
-                Log.i(TAG, "This device is not supported.");
+                Log.i(TAG, getResources().getString(R.string.device_not_supported));
                 finish();
             }
             return false;

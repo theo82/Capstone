@@ -37,7 +37,7 @@
             android:id="@+id/login_email"
             android:layout_width="match_parent"
             android:layout_height="57dp"
-            android:hint="Email"
+            android:hint="@string/hint_email"
             android:inputType="textEmailAddress"
 
             />
@@ -59,7 +59,7 @@
             android:id="@+id/login_password"
             android:layout_width="match_parent"
             android:layout_height="44dp"
-            android:hint="Password"
+            android:hint="@string/hint_password"
             android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
@@ -69,7 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="52dp"
-        android:text="Login to your Account"
+        android:text="@string/login_to_your_account"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout2"

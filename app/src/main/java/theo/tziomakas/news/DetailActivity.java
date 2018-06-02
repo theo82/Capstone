@@ -142,7 +142,7 @@ public class DetailActivity extends AppCompatActivity {
                 .into(mImageView);
 
         mTitle.setText(newsTitle);
-        mAuthor.setText("Author: " + newsAuthor);
+        mAuthor.setText(newsAuthor);
         mDescription.setText(newsDescription);
         mDate.setText(date2 + ", " + date1);
 

@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/detail_browser_btn"
-        android:title="View article in browser" />
+        android:title="@string/view_article_in_browser" />
 
 
 
