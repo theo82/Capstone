@@ -63,4 +63,8 @@
     <string name="fill_all_fields">Fill all fields</string>
     <string name="device_not_supported">device not supported</string>
     <string name="required">Required</string>
+    <string name="can_not_login">Can not login</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="logging_in">Logging in</string>
+    <string name="check_credentials">Please wait while we check your credentials</string>
 </resources>

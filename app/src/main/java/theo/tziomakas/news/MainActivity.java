@@ -16,8 +16,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import theo.tziomakas.news.adapters.SectionsPageAdapter;
+import theo.tziomakas.news.widget.UpdateNewsWidgetService;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
     FirebaseAuth mAuth;
     Toolbar toolbar;
     private ViewPager mViewPager;
@@ -90,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(startIntent);
         finish();
     }
+
+
 
 
 

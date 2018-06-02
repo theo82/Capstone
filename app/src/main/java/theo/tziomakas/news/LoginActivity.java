@@ -60,21 +60,21 @@ public class LoginActivity extends AppCompatActivity {
                 String pass = mLoginPassword.getText().toString();
 
                 if (TextUtils.isEmpty(mLoginEmail.getText().toString())) {
-                    mLoginEmail.setError("Required");
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                    mLoginEmail.setError(getResources().getString(R.string.required));
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.enter_your_email), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(mLoginPassword.getText().toString())) {
-                    mLoginPassword.setError("Required");
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                    mLoginPassword.setError(getResources().getString(R.string.required));
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.enter_your_password), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if(!TextUtils.isEmpty(email) || !TextUtils.isEmpty(pass)){
 
-                    mProgress.setTitle("Logging in");
-                    mProgress.setMessage("Please wait while we check your credentials");
+                    mProgress.setTitle(getResources().getString(R.string.logging_in));
+                    mProgress.setMessage(getResources().getString(R.string.check_credentials));
                     mProgress.setCanceledOnTouchOutside(false);
                     mProgress.show();
 
@@ -108,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
                         mProgress.hide();
 
-                        Toast.makeText(LoginActivity.this, "Can not login", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, getResources().getString(R.string.can_not_login), Toast.LENGTH_SHORT).show();
                         Log.d(TAG, String.valueOf(task.getException()));
                     }
                 }

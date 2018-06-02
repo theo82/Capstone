@@ -35,7 +35,7 @@ import theo.tziomakas.news.widget.UpdateNewsWidgetService;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NewsFragment extends Fragment implements LoaderManager.LoaderCallbacks<Object>, NewsAdapter.ListItemClickListener {
+public class NewsFragment extends Fragment implements LoaderManager.LoaderCallbacks<Object>, NewsAdapter.ListItemClickListener{
 
     private Boolean isVisible;
     private static final String LOG_TAG = NewsFragment.class.getName();
