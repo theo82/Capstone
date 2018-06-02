@@ -1,6 +1,8 @@
 package theo.tziomakas.news.widget;
 
 import android.app.IntentService;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +14,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import theo.tziomakas.news.DetailActivity;
 import theo.tziomakas.news.model.News;
 
 public class UpdateNewsWidgetService extends IntentService {
@@ -48,9 +51,17 @@ public class UpdateNewsWidgetService extends IntentService {
     }
 
     private void handleActionUpdateNewsWidget(ArrayList<News> newsArrayList){
-        Intent intent = new Intent("android.appwidget.action.APPWIDGET_UPDATE2");
-        intent.setAction("android.appwidget.action.APPWIDGET_UPDATE2");
+
+        AppWidgetManager widgetManager = AppWidgetManager.getInstance(getApplicationContext());
+        int[] ids = widgetManager.getAppWidgetIds(new ComponentName(getApplicationContext(), DetailActivity.class));
+
+        widgetManager.notifyAppWidgetViewDataChanged(ids, android.R.id.list);
+
+
+        Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         intent.putExtra("news_list", newsArrayList);
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
         sendBroadcast(intent);
     }
 }
