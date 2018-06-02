@@ -54,9 +54,6 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
 
 
     String newsTitlesToJson;
-    public NewsFragment() {
-        // Required empty public constructor
-    }
 
 
     public static NewsFragment newInstance(String newsUrl){

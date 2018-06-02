@@ -67,4 +67,12 @@
     <string name="enter_your_password">Enter your password</string>
     <string name="logging_in">Logging in</string>
     <string name="check_credentials">Please wait while we check your credentials</string>
+    <string name="login_title">Login</string>
+    <string name="comment_title">Add Comment</string>
+    <string name="posting_comment">Posting ...</string>
+    <string name="forgot_password_title">Forgot Password</string>
+    <string name="verify">Verifying...</string>
+    <string name="wait_for_instructions">Please wait to send instructions in your email.com</string>
+    <string name="success_email">Reset password instructions has sent to your email</string>
+    <string name="email_do_not_exist">Email doesn\'t exist</string>
 </resources>

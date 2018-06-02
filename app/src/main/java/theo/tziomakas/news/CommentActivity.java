@@ -49,7 +49,7 @@ public class CommentActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.comment_toolbar);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Add comment");
+        getSupportActionBar().setTitle(getResources().getString(R.string.comment_title));
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -91,7 +91,7 @@ public class CommentActivity extends AppCompatActivity {
 
         // Disable button so there are no multi-posts
         setEditingEnabled(false);
-        Toast.makeText(this, "Posting...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getResources().getString(R.string.posting_comment), Toast.LENGTH_SHORT).show();
 
         // [START single_value_read]
         final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();

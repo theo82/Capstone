@@ -33,7 +33,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         mToolbar = (Toolbar)findViewById(R.id.forgot_password_toolbar);
 
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Forgot Password");
+        getSupportActionBar().setTitle(getResources().getString(R.string.forgot_password_title));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         forgotPassBtn = (Button)findViewById(R.id.send_email_btn);
         emailEt = (EditText)findViewById(R.id.email_forgot_et);
@@ -52,8 +52,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 }
 
                 if(!TextUtils.isEmpty(email)){
-                    mProgress.setTitle("Verifying");
-                    mProgress.setMessage("Please wait to send instructions in your email.com");
+                    mProgress.setTitle(getResources().getString(R.string.verify));
+                    mProgress.setMessage(getResources().getString(R.string.wait_for_instructions));
                     mProgress.setCanceledOnTouchOutside(false);
                     mProgress.show();
 
@@ -74,12 +74,12 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
                             mProgress.dismiss();
-                            Toast.makeText(getApplicationContext(), "Reset password instructions has sent to your email",
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.success_email),
                                     Toast.LENGTH_SHORT).show();
                         }else{
                             mProgress.dismiss();
                             Toast.makeText(getApplicationContext(),
-                                    "Email don't exist", Toast.LENGTH_SHORT).show();
+                                    getResources().getString(R.string.email_do_not_exist), Toast.LENGTH_SHORT).show();
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
