@@ -13,7 +13,6 @@ import theo.tziomakas.news.model.News;
 import theo.tziomakas.news.utils.NetworkUtils;
 
 public class NewsService extends IntentService {
-
     private String newsUrl;
     private String date;
     private SharedPreferences prefs;
@@ -28,14 +27,10 @@ public class NewsService extends IntentService {
     protected void onHandleIntent(Intent intent) {
 
         newsList = new ArrayList<>();
-        //newsUrl = bundle.getString(newsUrl);
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        newsUrl = prefs.getString("url", "");
-        date = prefs.getString("request_date","");
 
-        Log.v("NewsService","Request date: " +date);
+        //newsList = NetworkUtils.fetchNewsData(newsUrl);
 
-        newsList = NetworkUtils.fetchNewsData(newsUrl);
+        //Log.d("NewsService", String.valueOf(newsList));
 
     }
 }
