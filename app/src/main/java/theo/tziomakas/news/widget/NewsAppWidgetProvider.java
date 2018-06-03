@@ -95,7 +95,14 @@ public class NewsAppWidgetProvider extends AppWidgetProvider {
         if(intent.getAction().equals(ACTION_AUTO_UPDATE))
         {
             // DO SOMETHING
-            Toast.makeText(context, "hiiiiiiiiiiii", Toast.LENGTH_SHORT).show();
+            AppWidgetManager appWidgetManager = AppWidgetManager
+                    .getInstance(context);
+            ComponentName thisAppWidget = new ComponentName(context
+                    .getPackageName(), NewsAppWidgetProvider.class.getName());
+            int[] appWidgetIds = appWidgetManager
+                    .getAppWidgetIds(thisAppWidget);
+
+            onUpdate(context, appWidgetManager, appWidgetIds);
 
         }
 
