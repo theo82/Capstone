@@ -35,6 +35,10 @@ public class NewsService extends IntentService {
 
         newsList = NetworkUtils.fetchNewsData(newsUrl);
 
+        PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
+                .edit().putString("newsListData", String.valueOf(newsList))
+                .commit();
+
         Log.v("NewsService", String.valueOf(newsList));
 
     }

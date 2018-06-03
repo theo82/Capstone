@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity{
 
     public void startAlarmManager(){
         Intent i = new Intent(this, WidgetBroadcastReceiver.class);
-        i.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+        //i.setAction("android.appwidget.action.APPWIDGET_UPDATE");
         sendBroadcast(i);
     }
 
