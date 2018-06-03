@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -91,6 +92,12 @@ public class NewsAppWidgetProvider extends AppWidgetProvider {
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
 
+        if(intent.getAction().equals(ACTION_AUTO_UPDATE))
+        {
+            // DO SOMETHING
+            Toast.makeText(context, "hiiiiiiiiiiii", Toast.LENGTH_SHORT).show();
+
+        }
 
     }
 }

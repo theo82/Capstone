@@ -1,5 +1,6 @@
 package theo.tziomakas.news;
 
+import android.app.AlarmManager;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.design.widget.TabLayout;
@@ -61,6 +62,8 @@ public class MainActivity extends AppCompatActivity{
         if(currentUser == null){
             sendToStart();
         }
+
+        startAlarmManager();
     }
 
     @Override
@@ -92,6 +95,11 @@ public class MainActivity extends AppCompatActivity{
         finish();
     }
 
+    public void startAlarmManager(){
+        Intent i = new Intent();
+        i.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+        sendBroadcast(i);
+    }
 
 
 
