@@ -35,5 +35,7 @@ public class NewsService extends IntentService {
 
         newsList = NetworkUtils.fetchNewsData(newsUrl);
 
+        Log.v("NewsService", String.valueOf(newsList));
+
     }
 }
