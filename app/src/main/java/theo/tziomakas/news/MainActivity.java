@@ -16,6 +16,7 @@ import android.view.View;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import alarm.WidgetBroadcastReceiver;
 import theo.tziomakas.news.adapters.SectionsPageAdapter;
 import theo.tziomakas.news.widget.UpdateNewsWidgetService;
 
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void startAlarmManager(){
-        Intent i = new Intent();
+        Intent i = new Intent(this, WidgetBroadcastReceiver.class);
         i.setAction("android.appwidget.action.APPWIDGET_UPDATE");
         sendBroadcast(i);
     }
