@@ -65,7 +65,7 @@
             android:name=".FavouriteNewsActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".CommentActivity" />
-
+        <service android:name="alarm.NewsService"/>
 
     </application>
 
