@@ -19,6 +19,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import alarm.AppWidgetAlarm;
+import alarm.NewsService;
 import theo.tziomakas.news.DetailActivity;
 import theo.tziomakas.news.MainActivity;
 import theo.tziomakas.news.R;
@@ -95,14 +96,9 @@ public class NewsAppWidgetProvider extends AppWidgetProvider {
         if(intent.getAction().equals(ACTION_AUTO_UPDATE))
         {
             // DO SOMETHING
-            AppWidgetManager appWidgetManager = AppWidgetManager
-                    .getInstance(context);
-            ComponentName thisAppWidget = new ComponentName(context
-                    .getPackageName(), NewsAppWidgetProvider.class.getName());
-            int[] appWidgetIds = appWidgetManager
-                    .getAppWidgetIds(thisAppWidget);
 
-            onUpdate(context, appWidgetManager, appWidgetIds);
+            intent = new Intent(context, NewsService.class);
+            context.startService(intent);
 
         }
 
