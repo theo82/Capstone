@@ -46,7 +46,6 @@ public class UpdateNewsWidgetService extends IntentService {
             Type type = new TypeToken<ArrayList<News>>(){}.getType();
             newsArrayList = gson.fromJson(json, type);
             handleActionUpdateNewsWidget(newsArrayList);
-            //handleCustomActionUpdateNewsWidget(newsArrayList);
 
         }
     }
@@ -65,17 +64,5 @@ public class UpdateNewsWidgetService extends IntentService {
         sendBroadcast(intent);
     }
 
-    private void handleCustomActionUpdateNewsWidget(ArrayList<News> newsArrayList){
 
-        AppWidgetManager widgetManager = AppWidgetManager.getInstance(getApplicationContext());
-        int[] ids = widgetManager.getAppWidgetIds(new ComponentName(getApplicationContext(), NewsAppWidgetProvider.class));
-
-        widgetManager.notifyAppWidgetViewDataChanged(ids, android.R.id.list);
-
-        Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-        intent.putExtra("news_list", newsArrayList);
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
-        sendBroadcast(intent);
-    }
 }
