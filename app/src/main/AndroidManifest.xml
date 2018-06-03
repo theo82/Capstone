@@ -42,7 +42,7 @@
         </receiver>
 
         <receiver android:name="alarm.WidgetBroadcastReceiver"
-            android:enabled="false">
+            android:enabled="true">
 
         </receiver>
 
