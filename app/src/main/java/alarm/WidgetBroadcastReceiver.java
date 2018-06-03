@@ -9,7 +9,7 @@ public class WidgetBroadcastReceiver extends BroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent) {
         //String action = intent.getAction();
-        Intent serviceIntent = new Intent(context, NewsService.class);
-        context.startService(serviceIntent);
+        //Intent serviceIntent = new Intent(context, NewsService.class);
+        //context.startService(serviceIntent);
     }
 }
