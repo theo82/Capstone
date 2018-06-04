@@ -57,12 +57,11 @@ public class UpdateNewsWidgetService extends IntentService {
 
         widgetManager.notifyAppWidgetViewDataChanged(ids, android.R.id.list);
 
+
         Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         intent.putExtra("news_list", newsArrayList);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
         sendBroadcast(intent);
     }
-
-
 }
