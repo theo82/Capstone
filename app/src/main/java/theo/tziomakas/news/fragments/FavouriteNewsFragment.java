@@ -167,7 +167,7 @@ public class FavouriteNewsFragment extends Fragment implements LoaderManager.Loa
                 //getLoaderManager().destroyLoader(MOVIES_LOADER_ID);
                 //adapter.clear();
 
-                Toast.makeText(getActivity(),"You haven't added a news article as favourite",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),getResources().getString(R.string.no_added_as_fav),Toast.LENGTH_SHORT).show();
             }
         }
 
