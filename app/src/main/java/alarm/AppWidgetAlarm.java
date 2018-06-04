@@ -13,6 +13,7 @@ import theo.tziomakas.news.widget.NewsAppWidgetProvider;
 public class AppWidgetAlarm
 {
     private final int ALARM_ID = 0;
+    private final int INTERVAL_MILLIS = 10000;
 
     private Context mContext;
 
@@ -25,18 +26,16 @@ public class AppWidgetAlarm
 
     public void startAlarm()
     {
-        Calendar c = Calendar.getInstance();
-
-        c.add(Calendar.MINUTE, 2);
-
-        long afterTwoMinutes = c.getTimeInMillis();
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MILLISECOND, INTERVAL_MILLIS);
 
         Intent alarmIntent = new Intent(NewsAppWidgetProvider.CUSTOM_ACTION_AUTO_UPDATE);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, ALARM_ID, alarmIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC, afterTwoMinutes, pendingIntent);
-
+        alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME, System.currentTimeMillis(),
+                60000,
+                pendingIntent);
     }
 
 
