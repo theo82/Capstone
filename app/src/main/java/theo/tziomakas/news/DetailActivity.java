@@ -144,7 +144,7 @@ public class DetailActivity extends AppCompatActivity {
         mTitle.setText(newsTitle);
         mAuthor.setText(newsAuthor);
         mDescription.setText(newsDescription);
-        mDate.setText(date2 + ", " + date1);
+        mDate.setText(date2 + getResources().getString(R.string.comma) + date1);
 
         mShareBtn.setOnClickListener(new View.OnClickListener() {
 
