@@ -29,7 +29,7 @@ import theo.tziomakas.news.model.News;
 public class NewsAppWidgetProvider extends AppWidgetProvider {
 
     public static final String CUSTOM_ACTION_AUTO_UPDATE = "AUTO_UPDATE";
-    public ArrayList<News> newsArrayList;
+
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                int appWidgetId) {
@@ -104,22 +104,14 @@ public class NewsAppWidgetProvider extends AppWidgetProvider {
             //intent = new Intent(context, NewsService.class);
             //context.startService(intent);
 
-            newsArrayList = new ArrayList<>();
-
             Intent serviceIntent = new Intent(context, NewsService.class);
             context.startService(serviceIntent);
 
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-            Gson gson = new Gson();
 
             String json = prefs.getString("newsListData", "");
 
-            Type type = new TypeToken<ArrayList<News>>(){}.getType();
-            newsArrayList = gson.fromJson(json, type);
-
             Log.d("NewsAppWidgetProvider",json);
-
-            UpdateNewsWidgetService.startBakingService(context,newsArrayList);
 
         }
 
