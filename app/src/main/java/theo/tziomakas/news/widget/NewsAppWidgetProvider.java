@@ -95,7 +95,6 @@ public class NewsAppWidgetProvider extends AppWidgetProvider {
 
         if(intent.getAction().equals(ACTION_AUTO_UPDATE))
         {
-            // DO SOMETHING
 
             //intent = new Intent(context, NewsService.class);
             //context.startService(intent);
