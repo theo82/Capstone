@@ -26,16 +26,18 @@ public class AppWidgetAlarm
 
     public void startAlarm()
     {
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.MILLISECOND, INTERVAL_MILLIS);
+        Calendar c = Calendar.getInstance();
+
+        c.add(Calendar.MINUTE, 2);
+
+        long afterTwoMinutes = c.getTimeInMillis();
 
         Intent alarmIntent = new Intent(NewsAppWidgetProvider.ACTION_AUTO_UPDATE);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, ALARM_ID, alarmIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME, System.currentTimeMillis(),
-                60000,
-                pendingIntent);
+        alarmManager.set(AlarmManager.RTC, afterTwoMinutes, pendingIntent);
+
     }
 
 
