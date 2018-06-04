@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,8 +37,10 @@ public class NewsService extends IntentService {
 
         newsList = NetworkUtils.fetchNewsData(newsUrl);
 
+        String jsonNewsList = new Gson().toJson(newsList);
+
         PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
-                .edit().putString("newsListData", String.valueOf(newsList))
+                .edit().putString("newsListData", jsonNewsList)
                 .commit();
 
         Log.v("NewsService", String.valueOf(newsList));

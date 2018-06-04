@@ -104,10 +104,14 @@ public class NewsAppWidgetProvider extends AppWidgetProvider {
             //intent = new Intent(context, NewsService.class);
             //context.startService(intent);
 
+            Intent serviceIntent = new Intent(context, NewsService.class);
+            context.startService(serviceIntent);
+
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
 
             String json = prefs.getString("newsListData", "");
+
             Log.d("NewsAppWidgetProvider",json);
 
         }
