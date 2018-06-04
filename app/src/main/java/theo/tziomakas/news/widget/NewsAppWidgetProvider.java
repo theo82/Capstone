@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
@@ -27,7 +28,7 @@ import theo.tziomakas.news.model.News;
 
 public class NewsAppWidgetProvider extends AppWidgetProvider {
 
-    public static final String ACTION_AUTO_UPDATE = "AUTO_UPDATE";
+    public static final String CUSTOM_ACTION_AUTO_UPDATE = "AUTO_UPDATE";
 
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
@@ -93,7 +94,11 @@ public class NewsAppWidgetProvider extends AppWidgetProvider {
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
 
-        if(intent.getAction().equals(ACTION_AUTO_UPDATE))
+        String action = intent.getAction();
+
+        Log.d("NewsAppWidgetProvider",action);
+
+        if(intent.getAction().equals(CUSTOM_ACTION_AUTO_UPDATE))
         {
 
             //intent = new Intent(context, NewsService.class);
@@ -103,6 +108,7 @@ public class NewsAppWidgetProvider extends AppWidgetProvider {
 
 
             String json = prefs.getString("newsListData", "");
+            Log.d("NewsAppWidgetProvider",json);
 
         }
 

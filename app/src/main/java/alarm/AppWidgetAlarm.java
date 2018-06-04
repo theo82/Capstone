@@ -13,7 +13,6 @@ import theo.tziomakas.news.widget.NewsAppWidgetProvider;
 public class AppWidgetAlarm
 {
     private final int ALARM_ID = 0;
-    private final int INTERVAL_MILLIS = 10000;
 
     private Context mContext;
 
@@ -32,7 +31,7 @@ public class AppWidgetAlarm
 
         long afterTwoMinutes = c.getTimeInMillis();
 
-        Intent alarmIntent = new Intent(NewsAppWidgetProvider.ACTION_AUTO_UPDATE);
+        Intent alarmIntent = new Intent(NewsAppWidgetProvider.CUSTOM_ACTION_AUTO_UPDATE);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, ALARM_ID, alarmIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
@@ -43,7 +42,7 @@ public class AppWidgetAlarm
 
     public void stopAlarm()
     {
-        Intent alarmIntent = new Intent(NewsAppWidgetProvider.ACTION_AUTO_UPDATE);
+        Intent alarmIntent = new Intent(NewsAppWidgetProvider.CUSTOM_ACTION_AUTO_UPDATE);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, ALARM_ID, alarmIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
