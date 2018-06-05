@@ -96,10 +96,14 @@ public class NewsAppWidgetProvider extends AppWidgetProvider {
         if(intent.getAction().equals(CUSTOM_ACTION_AUTO_UPDATE))
         {
 
-            intent = new Intent(context, NewsService.class);
-            context.startService(intent);
+            Intent serviceIntent = new Intent(context, NewsService.class);
+            context.startService(serviceIntent);
 
-            Log.d("NewsAppWidgetProvider","Hello from onReceive!");
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+            String json = prefs.getString("newsListData", "");
+
+            Log.d("NewsAppWidgetProvider",json);
 
 
         }
