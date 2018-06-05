@@ -60,8 +60,8 @@ public class NewsAppWidgetProvider extends AppWidgetProvider {
     public void onEnabled(Context context) {
 
         // start alarm
-        AppWidgetAlarm appWidgetAlarm = new AppWidgetAlarm(context.getApplicationContext());
-        appWidgetAlarm.startAlarm();
+        //AppWidgetAlarm appWidgetAlarm = new AppWidgetAlarm(context.getApplicationContext());
+        //appWidgetAlarm.startAlarm();
 
 
     }
@@ -69,6 +69,7 @@ public class NewsAppWidgetProvider extends AppWidgetProvider {
     @Override
     public void onDisabled(Context context) {
 
+        /*
         // stop alarm only if all widgets have been disabled
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         ComponentName thisAppWidgetComponentName = new ComponentName(context.getPackageName(), getClass().getName());
@@ -80,6 +81,8 @@ public class NewsAppWidgetProvider extends AppWidgetProvider {
 
 
         }
+
+        */
     }
 
     @Override
@@ -96,14 +99,6 @@ public class NewsAppWidgetProvider extends AppWidgetProvider {
             //intent = new Intent(context, NewsService.class);
             //context.startService(intent);
 
-            Intent serviceIntent = new Intent(context, NewsService.class);
-            context.startService(serviceIntent);
-
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-
-            String json = prefs.getString("newsListData", "");
-
-            Log.d("NewsAppWidgetProvider",json);
 
         }
 

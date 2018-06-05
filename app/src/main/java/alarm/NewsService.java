@@ -43,7 +43,8 @@ public class NewsService extends IntentService {
                 .edit().putString("newsListData", jsonNewsList)
                 .commit();
 
-        Log.v("NewsService", String.valueOf(newsList));
+        Log.v("NewsService",newsUrl);
+
 
     }
 }
