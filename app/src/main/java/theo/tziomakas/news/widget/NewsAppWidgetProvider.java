@@ -99,6 +99,7 @@ public class NewsAppWidgetProvider extends AppWidgetProvider {
             intent = new Intent(context, NewsService.class);
             context.startService(intent);
 
+            Log.d("NewsAppWidgetProvider","Hello from onReceive!");
 
 
         }

@@ -35,7 +35,7 @@ public class AppWidgetAlarm
         AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
         alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                 SystemClock.elapsedRealtime(),
-                2*60*1000,
+                2000,
                 pendingIntent);
     }
 
