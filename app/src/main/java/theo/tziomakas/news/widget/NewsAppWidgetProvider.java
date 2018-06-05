@@ -60,8 +60,8 @@ public class NewsAppWidgetProvider extends AppWidgetProvider {
     public void onEnabled(Context context) {
 
         // start alarm
-        //AppWidgetAlarm appWidgetAlarm = new AppWidgetAlarm(context.getApplicationContext());
-        //appWidgetAlarm.startAlarm();
+        AppWidgetAlarm appWidgetAlarm = new AppWidgetAlarm(context.getApplicationContext());
+        appWidgetAlarm.startAlarm();
 
 
     }
@@ -69,7 +69,7 @@ public class NewsAppWidgetProvider extends AppWidgetProvider {
     @Override
     public void onDisabled(Context context) {
 
-        /*
+
         // stop alarm only if all widgets have been disabled
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         ComponentName thisAppWidgetComponentName = new ComponentName(context.getPackageName(), getClass().getName());
@@ -82,7 +82,7 @@ public class NewsAppWidgetProvider extends AppWidgetProvider {
 
         }
 
-        */
+
     }
 
     @Override
@@ -96,8 +96,9 @@ public class NewsAppWidgetProvider extends AppWidgetProvider {
         if(intent.getAction().equals(CUSTOM_ACTION_AUTO_UPDATE))
         {
 
-            //intent = new Intent(context, NewsService.class);
-            //context.startService(intent);
+            intent = new Intent(context, NewsService.class);
+            context.startService(intent);
+
 
 
         }
