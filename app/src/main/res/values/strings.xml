@@ -79,4 +79,5 @@
     <string name="widget_news_image">Widget news</string>
     <string name="published_date_icon">Published date icon</string>
     <string name="no_added_as_fav">You haven\'t added a news article as favourite</string>
+    <string name="comma">\", \"</string>
 </resources>

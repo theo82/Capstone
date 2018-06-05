@@ -56,6 +56,11 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
     String newsTitlesToJson;
 
 
+    private boolean fragmentResume=false;
+    private boolean fragmentVisible=false;
+    private boolean fragmentOnCreated=false;
+
+
     public static NewsFragment newInstance(String newsUrl){
         Bundle bundle = new Bundle();
         bundle.putString("url", newsUrl);
@@ -116,6 +121,9 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
             mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(getActivity()));
             adapter = new NewsAdapter(getActivity(),newsArrayList,this);
             mRecyclerView.setAdapter(adapter);
+
+
+
 
             //UpdateNewsWidgetService.startBakingService(getContext(), (ArrayList<News>) newsArrayList);
 
@@ -186,6 +194,7 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
 
         if(isVisibleToUser){
 
+
             newsTitlesToJson = new Gson().toJson(newsArrayList);
 
             if(getActivity() != null){
@@ -195,6 +204,10 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
                  */
                 PreferenceManager.getDefaultSharedPreferences(getActivity())
                         .edit().putString("news", newsTitlesToJson)
+                        .commit();
+
+                PreferenceManager.getDefaultSharedPreferences(getActivity())
+                        .edit().putString("url", newsUrl)
                         .commit();
 
 
@@ -208,6 +221,8 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
             Log.v(LOG_TAG, newsTitlesToJson);
 
         }
+
+
     }
 
     @Override

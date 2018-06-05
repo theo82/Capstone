@@ -43,6 +43,11 @@
                 android:resource="@xml/news_app_widget_info" />
         </receiver>
 
+        <receiver android:name="alarm.WidgetBroadcastReceiver"
+            android:enabled="true">
+
+        </receiver>
+
 
         <service android:name=".widget.UpdateNewsWidgetService" />
         <service
@@ -62,6 +67,7 @@
             android:name=".FavouriteNewsActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".CommentActivity" />
+        <service android:name="alarm.NewsService"/>
 
     </application>
 
