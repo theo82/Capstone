@@ -35,7 +35,6 @@
         <receiver android:name=".widget.NewsAppWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="AUTO_UPDATE" />
             </intent-filter>
 
             <meta-data
