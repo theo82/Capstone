@@ -50,7 +50,7 @@
     <string name="the_wall_street_journal">The Wall Street Journal</string>
     <string name="enter_your_email">Enter your email</string>
     <string name="hint_email">email</string>
-    <string name="hint_password">Password</string>
+    <string name="hint_password">Password (more than 6 characters)</string>
     <string name="login_to_your_account">Login to your account</string>
     <string name="view_article_in_browser">View article in browser</string>
     <string name="hint_username">Username</string>
