@@ -55,11 +55,6 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
     private String newsTitlesToJson;
 
 
-    private boolean fragmentResume=false;
-    private boolean fragmentVisible=false;
-    private boolean fragmentOnCreated=false;
-
-
     public static NewsFragment newInstance(String newsUrl){
         Bundle bundle = new Bundle();
         bundle.putString("url", newsUrl);
