@@ -16,13 +16,13 @@ import android.support.annotation.Nullable;
 
 public class FavouriteProvider extends ContentProvider {
 
-    public static final int CODE_FAVOURITE = 100;
-    public static final int CODE_FAVOURITE_WITH_TITLE = 101;
+    private static final int CODE_FAVOURITE = 100;
+    private static final int CODE_FAVOURITE_WITH_TITLE = 101;
     private static final UriMatcher sUriMatcher = buildUriMatcher();
     private static final String LOG_TAG = "FavouriteProvider";
     private FavouriteDbHelper mOpenHelper;
 
-    public static UriMatcher buildUriMatcher() {
+    private static UriMatcher buildUriMatcher() {
 
         final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
         final String authority = FavouriteContract.CONTENT_AUTHORITY;

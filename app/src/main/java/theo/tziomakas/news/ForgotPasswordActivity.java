@@ -18,8 +18,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
 
-    Button forgotPassBtn;
-    EditText emailEt;
+    private Button forgotPassBtn;
+    private EditText emailEt;
     private Toolbar mToolbar;
     private ProgressDialog mProgress;
 
@@ -64,7 +64,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
     }
 
-    public void resetUserPassword(String email){
+    private void resetUserPassword(String email){
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         mAuth.sendPasswordResetEmail(email)

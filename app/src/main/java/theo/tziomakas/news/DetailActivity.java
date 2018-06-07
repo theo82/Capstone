@@ -41,14 +41,14 @@ import theo.tziomakas.news.model.Comment;
 
 public class DetailActivity extends AppCompatActivity {
 
-    ArrayList<Comment> commentArrayList;
+    private ArrayList<Comment> commentArrayList;
 
-    ImageView mImageView;
-    TextView mTitle;
-    TextView mDate;
-    TextView mDescription;
-    TextView mAuthor;
-    ToggleButton mFavBtn;
+    private ImageView mImageView;
+    private TextView mTitle;
+    private TextView mDate;
+    private TextView mDescription;
+    private TextView mAuthor;
+    private ToggleButton mFavBtn;
     private TextView noCommentsTextView;
     private TextView commentsTextView;
 
@@ -292,7 +292,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
 
-    public void queryFirebaseDb(){
+    private void queryFirebaseDb(){
 
         /**
          * Quering the database to check if the specific article has comments.

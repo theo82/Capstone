@@ -52,7 +52,7 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
     private static final String LAYOUT_STATE = "USATodayFragment.recycler.layout";
 
 
-    String newsTitlesToJson;
+    private String newsTitlesToJson;
 
 
     private boolean fragmentResume=false;
@@ -182,7 +182,7 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
         }
     }
 
-    public void showError(){
+    private void showError(){
         mRecyclerView.setVisibility(View.GONE);
         errorTextView.setVisibility(View.VISIBLE);
     }

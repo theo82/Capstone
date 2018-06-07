@@ -18,11 +18,11 @@ import theo.tziomakas.news.fragments.NewsFragment;
 public class SectionsPageAdapter extends FragmentPagerAdapter {
 
     private static final String LOG_TAG = SectionsPageAdapter.class.getSimpleName();
-    Context mContext;
+    private Context mContext;
 
 
 
-    String[] sources = {
+    private String[] sources = {
             "usa-today",
             "bbc-news",
             "al-jazeera-english",
@@ -39,9 +39,9 @@ public class SectionsPageAdapter extends FragmentPagerAdapter {
             "the-wall-street-journal"
     };
 
-    public static final String BASE_URL = "http://newsapi.org/v2/top-headlines?sources=";
+    private static final String BASE_URL = "http://newsapi.org/v2/top-headlines?sources=";
 
-    public static final String API_KEY = "&apiKey=98b995b151264acdb35e751ff6d22a3c";
+    private static final String API_KEY = "&apiKey=98b995b151264acdb35e751ff6d22a3c";
 
     public SectionsPageAdapter(FragmentManager fm,Context context) {
         super(fm);

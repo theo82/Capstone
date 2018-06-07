@@ -16,8 +16,8 @@ import com.google.firebase.auth.FirebaseUser;
 import theo.tziomakas.news.adapters.SectionsPageAdapter;
 
 public class MainActivity extends AppCompatActivity{
-    FirebaseAuth mAuth;
-    Toolbar toolbar;
+    private FirebaseAuth mAuth;
+    private Toolbar toolbar;
     private ViewPager mViewPager;
     private SectionsPageAdapter mSectionsPagerAdapter;
     private TabLayout mTabLayout;
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity{
 
         return true;
     }
-    public void sendToStart(){
+    private void sendToStart(){
         Intent startIntent = new Intent(MainActivity.this,StartActivity.class);
         startActivity(startIntent);
         finish();

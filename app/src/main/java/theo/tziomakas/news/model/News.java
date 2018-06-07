@@ -10,7 +10,7 @@ public class News implements Parcelable {
     private String description;
     private String url;
     private String urlToImage;
-    public String publishedDate;
+    private String publishedDate;
 
 
     public News(){
