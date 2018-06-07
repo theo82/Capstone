@@ -46,16 +46,16 @@ public class CommentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
 
-        toolbar = (Toolbar) findViewById(R.id.comment_toolbar);
+        toolbar = findViewById(R.id.comment_toolbar);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getResources().getString(R.string.comment_title));
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        titleEt = (EditText) findViewById(R.id.comment_title);
-        bodyEt = (EditText) findViewById(R.id.comment_body);
-        commentBtn = (Button) findViewById(R.id.comment_btn);
+        titleEt = findViewById(R.id.comment_title);
+        bodyEt = findViewById(R.id.comment_body);
+        commentBtn = findViewById(R.id.comment_btn);
 
         i = getIntent();
 

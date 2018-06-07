@@ -44,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        mToolbar = (Toolbar)findViewById(R.id.register_toolbar);
+        mToolbar = findViewById(R.id.register_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle(getResources().getString(R.string.create_new_account));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -52,10 +52,10 @@ public class RegisterActivity extends AppCompatActivity {
         mProgress = new ProgressDialog(this);
 
         mAuth = FirebaseAuth.getInstance();
-        mDisplayName = (TextInputEditText)findViewById(R.id.reg_display_name);
-        mEmail = (TextInputEditText)findViewById(R.id.reg_email);
-        mPassword = (TextInputEditText)findViewById(R.id.reg_password);
-        mCreateBtn = (Button) findViewById(R.id.reg_create_btn);
+        mDisplayName = findViewById(R.id.reg_display_name);
+        mEmail = findViewById(R.id.reg_email);
+        mPassword = findViewById(R.id.reg_password);
+        mCreateBtn = findViewById(R.id.reg_create_btn);
 
 
         mCreateBtn.setOnClickListener(new View.OnClickListener() {

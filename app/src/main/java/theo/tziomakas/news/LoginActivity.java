@@ -47,9 +47,9 @@ public class LoginActivity extends AppCompatActivity {
         mProgress = new ProgressDialog(this);
 
 
-        mLoginEmail = (TextInputEditText)findViewById(R.id.login_email);
-        mLoginPassword = (TextInputEditText)findViewById(R.id.login_password);
-        mLoginBtn = (Button)findViewById(R.id.login_create_btn);
+        mLoginEmail = findViewById(R.id.login_email);
+        mLoginPassword = findViewById(R.id.login_password);
+        mLoginBtn = findViewById(R.id.login_create_btn);
 
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        mForgotPass = (Button)findViewById(R.id.login_forgot_password);
+        mForgotPass = findViewById(R.id.login_forgot_password);
         mForgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

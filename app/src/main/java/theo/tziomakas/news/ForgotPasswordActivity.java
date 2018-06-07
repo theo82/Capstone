@@ -29,13 +29,13 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
 
-        mToolbar = (Toolbar)findViewById(R.id.forgot_password_toolbar);
+        mToolbar = findViewById(R.id.forgot_password_toolbar);
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle(getResources().getString(R.string.forgot_password_title));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        forgotPassBtn = (Button)findViewById(R.id.send_email_btn);
-        emailEt = (EditText)findViewById(R.id.email_forgot_et);
+        forgotPassBtn = findViewById(R.id.send_email_btn);
+        emailEt = findViewById(R.id.email_forgot_et);
 
 
         mProgress = new ProgressDialog(this);

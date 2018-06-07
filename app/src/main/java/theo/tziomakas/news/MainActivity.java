@@ -30,16 +30,16 @@ public class MainActivity extends AppCompatActivity{
         mAuth = FirebaseAuth.getInstance();
 
 
-        toolbar = (android.support.v7.widget.Toolbar)findViewById(R.id.main_page_toolbar);
+        toolbar = findViewById(R.id.main_page_toolbar);
         setSupportActionBar(toolbar);
 
 
-        mViewPager = (ViewPager)findViewById(R.id.main_TabPager);
+        mViewPager = findViewById(R.id.main_TabPager);
         mSectionsPagerAdapter = new SectionsPageAdapter(getSupportFragmentManager(), this);
 
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setOffscreenPageLimit(1);
-        mTabLayout = (TabLayout)findViewById(R.id.main_tabs);
+        mTabLayout = findViewById(R.id.main_tabs);
         //mTabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FF0000"));
         //mTabLayout.setSelectedTabIndicatorHeight((int) (5 * getResources().getDisplayMetrics().density));
         mTabLayout.setTabTextColors(Color.parseColor("#460b1f"), Color.parseColor("#ffffff"));

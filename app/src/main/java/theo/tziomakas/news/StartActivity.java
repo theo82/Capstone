@@ -15,7 +15,7 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        regButton = (Button)findViewById(R.id.start_reg_button);
+        regButton = findViewById(R.id.start_reg_button);
 
         regButton.setOnClickListener(new View.OnClickListener() {
 
@@ -26,7 +26,7 @@ public class StartActivity extends AppCompatActivity {
             }
 
         });
-        mLoginBtn = (Button)findViewById(R.id.start_login_button);
+        mLoginBtn = findViewById(R.id.start_login_button);
 
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override

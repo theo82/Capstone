@@ -82,26 +82,26 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
+        Toolbar toolbar = findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent i = getIntent();
 
-        mAuthor = (TextView) findViewById(R.id.detail_author);
+        mAuthor = findViewById(R.id.detail_author);
 
-        mImageView = (ImageView) findViewById(R.id.detail_image_view);
-        mTitle = (TextView) findViewById(R.id.detail_title);
-        mDate = (TextView) findViewById(R.id.detail_publish_date);
-        mDescription = (TextView) findViewById(R.id.detail_description);
-        noCommentsTextView = (TextView)findViewById(R.id.noCommentsTextView);
-        commentsTextView = (TextView)findViewById(R.id.commentsTextView);
-        mShareBtn = (FloatingActionButton) findViewById(R.id.share_floating_btn);
-        mFavBtn = (ToggleButton) findViewById(R.id.fav_news_btn);
-        imageButton = (ImageButton)findViewById(R.id.detail_comment_image_btn);
+        mImageView = findViewById(R.id.detail_image_view);
+        mTitle = findViewById(R.id.detail_title);
+        mDate = findViewById(R.id.detail_publish_date);
+        mDescription = findViewById(R.id.detail_description);
+        noCommentsTextView = findViewById(R.id.noCommentsTextView);
+        commentsTextView = findViewById(R.id.commentsTextView);
+        mShareBtn = findViewById(R.id.share_floating_btn);
+        mFavBtn = findViewById(R.id.fav_news_btn);
+        imageButton = findViewById(R.id.detail_comment_image_btn);
 
-        mRecyclerView = (RecyclerView)findViewById(R.id.recycler_comments);
+        mRecyclerView = findViewById(R.id.recycler_comments);
 
         LinearLayoutManager manager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(manager);
