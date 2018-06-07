@@ -9,4 +9,3 @@ The project uses the following features.
 - User can a add a comment in any article
 - User can a add any article as favourite
 
-<video src="Capstone-Udacity.mov" width="320" height="200" controls preload></video>
