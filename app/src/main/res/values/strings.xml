@@ -6,21 +6,14 @@
     <string name="create_new_account">Create new account</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login">Login</string>
     <string name="email">Your Email</string>
     <string name="forgot_pass">Forgot Password?</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="send_email">Send email</string>
     <string name="error_message">You have no internet connection</string>
-    <string name="title_activity_detail">DetailActivity</string>
-    <string name="share">Share</string>
-    <string name="browser">Browser</string>
     <string name="submit_comment">Submit comment</string>
-    <string name="comment_on_article">Comment on article</string>
-    <string name="display_comments">Display comments</string>
     <string name="no_comments_posted">No comment posted</string>
-    <string name="hello_from_display_comments_fragment">Display comments</string>
     <string name="comments_posted">Comments posted</string>
     <string name="title_of_comment">Title of comment</string>
     <string name="body_of_comment">Body of comment</string>
@@ -42,7 +35,6 @@
     <string name="favourite_toggle_btn">Favourite Toggle Button</string>
     <string name="detail_activity_image">Detail Activity Image</string>
     <string name="logout">Log Out</string>
-    <string name="view_all_comments">View all comments</string>
     <string name="favourite_news">Favorite News</string>
     <string name="the_new_york_times">The New York Times</string>
     <string name="the_huffington_post">The Huffington Post</string>

@@ -4,7 +4,6 @@ package theo.tziomakas.news.utils;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;

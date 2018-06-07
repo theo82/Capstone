@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 import theo.tziomakas.news.R;
 import theo.tziomakas.news.model.Comment;
-import theo.tziomakas.news.model.News;
 
 public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayCommentsAdapter.CommentsViewHolder>{
 

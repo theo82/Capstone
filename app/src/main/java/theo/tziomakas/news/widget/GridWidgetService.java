@@ -1,6 +1,5 @@
 package theo.tziomakas.news.widget;
 
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,7 +15,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import theo.tziomakas.news.DetailActivity;
-import theo.tziomakas.news.MainActivity;
 import theo.tziomakas.news.R;
 import theo.tziomakas.news.model.News;
 

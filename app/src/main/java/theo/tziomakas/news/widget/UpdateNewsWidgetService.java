@@ -14,7 +14,6 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-import theo.tziomakas.news.DetailActivity;
 import theo.tziomakas.news.model.News;
 
 public class UpdateNewsWidgetService extends IntentService {
