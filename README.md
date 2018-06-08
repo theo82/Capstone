@@ -5,9 +5,9 @@ The project uses the following features.
 - Firebase
 - A complete login/registration system
 - News from different sources
-- Homescreen widget which updates when a new source is swipped in the app
-- User can a add a comment in any article
-- User can a add any article as favourite
+- Homescreen widget which updates when a new source is swapped in the app
+- User can add a comment in any article
+- User can add any article as favourite
 
 ![screenshot_1528406092](https://user-images.githubusercontent.com/7755518/41126796-692276d4-6ab1-11e8-8c8d-f3d43b606d25.png)
 
