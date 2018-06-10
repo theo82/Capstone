@@ -14,6 +14,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import theo.tziomakas.news.R;
 import theo.tziomakas.news.model.News;
 
@@ -60,10 +62,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         String newsImage = news.getUrlToImage();
         String newsTitle = news.getTitle();
         String newsAuthor = news.getAuthor();
-        //String newsDate = news.getPublishedDate();
-
-        //String date1 = newsDate.substring(0,10);
-       // String date2 = newsDate.substring(11,19);
         Picasso.with(context)
                 .load(newsImage)
                 .placeholder(R.drawable.ic_broken_image)
@@ -73,9 +71,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
         holder.mTitle.setText(newsTitle);
         holder.mAuthor.setText(newsAuthor);
-        //holder.mDate.setText(date2);
 
-        //Log.v(LOG_TAG,newsTitle);
 
 
 
@@ -101,19 +97,21 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     }
 
     public class NewsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        @BindView(R.id.news_image)
         ImageView mImageView;
+
+        @BindView(R.id.news_title)
         TextView mTitle;
+
+        @BindView(R.id.news_author)
         TextView mAuthor;
-        //TextView mDate;
 
         public NewsViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-
-            mImageView = itemView.findViewById(R.id.news_image);
-            mTitle = itemView.findViewById(R.id.news_title);
-            mAuthor = itemView.findViewById(R.id.news_author);
-            //mDate = itemView.findViewById(R.id.news_date);
+            // binding view
+            ButterKnife.bind(this, itemView);
         }
 
         @Override

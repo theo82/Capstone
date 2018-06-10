@@ -22,6 +22,9 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import theo.tziomakas.news.DetailActivity;
 import theo.tziomakas.news.R;
 import theo.tziomakas.news.adapters.NewsAdapter;
@@ -41,11 +44,13 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
     private static final int NEWS_LOADER_ID = 0;
     private String newsUrl;
 
-    private RecyclerView mRecyclerView;
-    private SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.news_recycler_view)
+    RecyclerView mRecyclerView;
 
     private NewsAdapter adapter;
-    private TextView errorTextView;
+
+    @BindView(R.id.errorTextView)
+    TextView errorTextView;
 
     private static final String ARRAY_LIST = "list_view";
     private ArrayList<News> newsArrayList;
@@ -54,6 +59,7 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
 
     private String newsTitlesToJson;
 
+    Unbinder unbinder;
 
     public static NewsFragment newInstance(String newsUrl){
         Bundle bundle = new Bundle();
@@ -79,6 +85,7 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.common_fragment_layout, container, false);
 
+        unbinder = ButterKnife.bind(this, v);
 
         if(savedInstanceState == null) {
             newsArrayList = new ArrayList<>();
@@ -86,9 +93,6 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
 
             readBundle(getArguments());
 
-
-            mRecyclerView = v.findViewById(R.id.news_recycler_view);
-            errorTextView = v.findViewById(R.id.errorTextView);
             LinearLayoutManager manager = new LinearLayoutManager(getActivity());
             mRecyclerView.setLayoutManager(manager);
             mRecyclerView.setHasFixedSize(true);

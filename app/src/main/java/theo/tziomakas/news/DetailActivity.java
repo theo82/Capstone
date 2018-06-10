@@ -34,6 +34,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import theo.tziomakas.news.adapters.DisplayCommentsAdapter;
 import theo.tziomakas.news.adapters.SimpleDividerItemDecoration;
 import theo.tziomakas.news.data.FavouriteContract;
@@ -43,18 +46,30 @@ public class DetailActivity extends AppCompatActivity {
 
     private ArrayList<Comment> commentArrayList;
 
-    private ImageView mImageView;
-    private TextView mTitle;
-    private TextView mDate;
-    private TextView mDescription;
-    private TextView mAuthor;
-    private ToggleButton mFavBtn;
-    private TextView noCommentsTextView;
-    private TextView commentsTextView;
 
-    private ImageButton imageButton;
+    @BindView(R.id.detail_image_view)
+    ImageView mImageView;
 
-    private FloatingActionButton mShareBtn;
+    @BindView(R.id.detail_title)
+    TextView mTitle;
+
+    @BindView(R.id.detail_publish_date)
+    TextView mDate;
+
+    @BindView(R.id.detail_description)
+    TextView mDescription;
+
+    @BindView(R.id.detail_author)
+    TextView mAuthor;
+
+    @BindView(R.id.fav_news_btn)
+    ToggleButton mFavBtn;
+
+    @BindView(R.id.noCommentsTextView)
+    TextView noCommentsTextView;
+
+    @BindView(R.id.recycler_comments)
+    RecyclerView mRecyclerView;
 
     private String newsTitle;
     private String newsImage;
@@ -74,7 +89,6 @@ public class DetailActivity extends AppCompatActivity {
 
     private Uri uri;
 
-    private RecyclerView mRecyclerView;
     private DisplayCommentsAdapter displayCommentsAdapter;
 
     @Override
@@ -89,19 +103,8 @@ public class DetailActivity extends AppCompatActivity {
 
         Intent i = getIntent();
 
-        mAuthor = findViewById(R.id.detail_author);
-
-        mImageView = findViewById(R.id.detail_image_view);
-        mTitle = findViewById(R.id.detail_title);
-        mDate = findViewById(R.id.detail_publish_date);
-        mDescription = findViewById(R.id.detail_description);
-        noCommentsTextView = findViewById(R.id.noCommentsTextView);
-        commentsTextView = findViewById(R.id.commentsTextView);
-        mShareBtn = findViewById(R.id.share_floating_btn);
-        mFavBtn = findViewById(R.id.fav_news_btn);
-        imageButton = findViewById(R.id.detail_comment_image_btn);
-
-        mRecyclerView = findViewById(R.id.recycler_comments);
+        // bind the view using butterknife
+        ButterKnife.bind(this);
 
         LinearLayoutManager manager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(manager);
@@ -110,9 +113,7 @@ public class DetailActivity extends AppCompatActivity {
 
         commentArrayList = new ArrayList<>();
 
-
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
 
         mFavBtn.setTextOn(null);
         mFavBtn.setText(null);
@@ -142,24 +143,6 @@ public class DetailActivity extends AppCompatActivity {
         mAuthor.setText(newsAuthor);
         mDescription.setText(newsDescription);
         mDate.setText(date2 + getResources().getString(R.string.comma) + date1);
-
-        mShareBtn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Intent shareIntent = createShareNewsIntent();
-                startActivity(shareIntent);
-            }
-        });
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent commentIntent = new Intent(DetailActivity.this, CommentActivity.class);
-                commentIntent.putExtra("newsTitle",newsTitle);
-                startActivity(commentIntent);
-            }
-        });
-
 
         /**
          * Handling the add/remove news part. We check if the specific news article
@@ -243,6 +226,18 @@ public class DetailActivity extends AppCompatActivity {
 
     }
 
+    @OnClick(R.id.share_floating_btn)
+    public void onShareBtnClick(View view){
+        Intent shareIntent = createShareNewsIntent();
+        startActivity(shareIntent);
+    }
+
+    @OnClick(R.id.detail_comment_image_btn)
+    public void onCommentArticle(View view){
+        Intent commentIntent = new Intent(DetailActivity.this, CommentActivity.class);
+        commentIntent.putExtra("newsTitle",newsTitle);
+        startActivity(commentIntent);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
