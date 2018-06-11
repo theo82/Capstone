@@ -237,5 +237,10 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
     }
 
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
 
 }
